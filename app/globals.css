@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #111111;
+  --bg-secondary: #1a1a1a;
+  --accent-red: #B22222;
+  --accent-white: #E8E8E8;
+  --text-body: #C8C8C8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #111111;
+  color: #E8E8E8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #111111; }
+::-webkit-scrollbar-thumb { background: #B22222; border-radius: 2px; }
+
+/* Red underline utility */
+.red-underline {
+  position: relative;
+  display: inline-block;
+}
+.red-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #B22222;
+}
+
+/* ── Leader underline animation ─────────────────────────────────────────── */
+.leader-underline-svg {
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 12px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* Leader underline — pure CSS animation, no JS class needed */
+@keyframes underline-fadein {
+  0%   { opacity: 0; clip-path: inset(0 100% 0 0); }
+  100% { opacity: 1; clip-path: inset(0 0% 0 0); }
+}
+
+.leader-underline-svg {
+  opacity: 0;
+  animation: underline-fadein 0.8s ease forwards;
+  animation-delay: 1.1s;
+}
+
+/* ── Blog prose styles ───────────────────────────────────────────────────── */
+.prose-joe p {
+  color: #C8C8C8;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.prose-joe h2 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #E8E8E8;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.prose-joe h3 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #E8E8E8;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-joe blockquote {
+  border-left: 2px solid #B22222;
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+}
+
+.prose-joe blockquote p {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #E8E8E8;
+}
+
+.prose-joe strong {
+  color: #E8E8E8;
+  font-weight: 600;
+}
+
+.prose-joe em {
+  color: #C8C8C8;
+}
+
+.prose-joe a {
+  color: #B22222;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose-joe a:hover {
+  color: #E8E8E8;
+}
+
+.prose-joe ul, .prose-joe ol {
+  color: #C8C8C8;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.prose-joe li {
+  margin-bottom: 0.5rem;
+  line-height: 1.75;
+}
+
+.prose-joe hr {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin: 3rem 0;
+}
