@@ -13,6 +13,7 @@
     "@mdx-js/react": "^3.1.1",
     "@next/font": "^14.2.15",
     "@next/mdx": "^16.1.6",
+    "@vercel/analytics": "^2.0.1",
     "framer-motion": "^12.35.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.577.0",
