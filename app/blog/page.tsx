@@ -3,8 +3,12 @@ import Footer from "@/components/Footer";
 import BlogIndex from "@/components/blog/BlogIndex";
 
 export const metadata = {
-  title: "Writing | Joe Diele — Diele Consulting",
-  description: "Essays on leadership, culture, and the transition from technical expert to people leader.",
+  title: "Leadership Blog for Technical Leaders | Diele Consulting",
+  description:
+    "Practical writing on leadership transitions, engineering culture, and what it really takes to lead technical teams. From Joe Diele — executive coach for engineers, Colorado-based.",
+  alternates: {
+    canonical: "https://www.dieleconsulting.com/blog",
+  },
 };
 
 export default function BlogPage() {

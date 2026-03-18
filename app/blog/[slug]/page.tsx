@@ -15,8 +15,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getPost(slug);
   if (!post) return {};
   return {
-    title: `${post.title} | Joe Diele`,
+    title: post.title,
     description: post.excerpt,
+    alternates: {
+      canonical: `https://www.dieleconsulting.com/blog/${slug}`,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: `https://www.dieleconsulting.com/blog/${slug}`,
+      type: "article",
+      authors: ["Joe Diele"],
+    },
   };
 }
 

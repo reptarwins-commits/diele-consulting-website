@@ -8,8 +8,12 @@ import Publications from "@/components/about/Publications";
 import AboutCTA from "@/components/about/AboutCTA";
 
 export const metadata = {
-  title: "About Joe Diele | Executive Coach & Leadership Consultant",
-  description: "35 years turning technical expertise into leadership mastery. Joe Diele's story — from engineer to executive coach.",
+  title: "About Joe Diele | Executive Coach for Engineers & Technical Leaders",
+  description:
+    "35 years of technical leadership experience. Joe Diele coaches CTOs, VPs of Engineering, and technical founders through the leadership transition — from best engineer in the room to effective people leader. Colorado-based, serving leaders nationwide.",
+  alternates: {
+    canonical: "https://www.dieleconsulting.com/about",
+  },
 };
 
 export default function AboutPage() {
