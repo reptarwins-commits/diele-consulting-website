@@ -43,7 +43,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${playfair.variable} ${caveat.variable} font-sans antialiased`}>
         {/* Google Analytics GA4 */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-H1N1JWETGK"
+          src="https://www.googletagmanager.com/gtag/js?id=G-XW4WYRT1QH"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -51,7 +51,7 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-H1N1JWETGK');
+            gtag('config', 'G-XW4WYRT1QH');
           `}
         </Script>
         {children}
