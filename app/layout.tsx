@@ -71,6 +71,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.dieleconsulting.com",
   },
+  verification: {
+    google: "q0uftAgt5uNe1mu9_K4qbWRyr4ihBlZNC1ZCe4ropO0",
+  },
   robots: {
     index: true,
     follow: true,
