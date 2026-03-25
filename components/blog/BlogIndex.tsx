@@ -13,6 +13,15 @@ const posts = [
     featured: true,
   },
   {
+    slug: "what-my-kids-learned-from-me",
+    title: "What My Kids Learned From Me",
+    excerpt: "I never sat them down and taught them these things. I was too busy working. But somehow, in the margins of all that bustle, they were watching.",
+    date: "March 25, 2026",
+    readTime: "4 min read",
+    category: "Leadership",
+    featured: false,
+  },
+  {
     slug: "remote-culture-problem",
     title: "The Remote Culture Problem",
     excerpt: "You built the culture in the office. You are not sure it survived the distance.",
