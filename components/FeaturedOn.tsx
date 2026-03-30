@@ -31,7 +31,7 @@ export default function FeaturedOn() {
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           <div className="flex items-center gap-3 mb-10">
             <div className="w-6 h-[1px] bg-[#B22222]" />
-            <span className="text-[#B22222] text-xs tracking-[0.3em] uppercase font-semibold">Featured On</span>
+            <span className="text-[#E84444] text-xs tracking-[0.3em] uppercase font-semibold">Featured On</span>
             <div className="w-6 h-[1px] bg-[#B22222]" />
           </div>
 
@@ -59,7 +59,7 @@ export default function FeaturedOn() {
                     {item.title}
                   </p>
                   <p className="text-[#909090] text-xs mb-2">{item.show} · {item.date}</p>
-                  <span className="inline-flex items-center gap-1 text-[#B22222] text-xs font-semibold tracking-wide uppercase">
+                  <span className="inline-flex items-center gap-1 text-[#E84444] text-xs font-semibold tracking-wide uppercase">
                     {item.label}
                     <svg className="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />

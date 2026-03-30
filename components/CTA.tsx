@@ -23,7 +23,7 @@ export default function CTA() {
       <div className={`relative z-10 max-w-3xl mx-auto px-6 text-center transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
         <div className="flex items-center justify-center gap-3 mb-6">
           <div className="w-6 h-[1px] bg-[#B22222]" />
-          <span className="text-[#B22222] text-xs tracking-[0.3em] uppercase font-semibold">Take the First Step</span>
+          <span className="text-[#E84444] text-xs tracking-[0.3em] uppercase font-semibold">Take the First Step</span>
           <div className="w-6 h-[1px] bg-[#B22222]" />
         </div>
 

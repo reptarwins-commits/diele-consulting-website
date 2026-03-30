@@ -57,7 +57,7 @@ function Ticker() {
       <div className="cred-scroll-track">
         {tickerItems.map((name, i) => (
           <span key={i} className="flex items-center gap-10 px-5">
-            <span className="text-white/40 hover:text-white/70 text-xs font-semibold tracking-[0.2em] uppercase transition-colors duration-300 cursor-default whitespace-nowrap">
+            <span className="text-white/60 hover:text-white/80 text-xs font-semibold tracking-[0.2em] uppercase transition-colors duration-300 cursor-default whitespace-nowrap">
               {name}
             </span>
             <span className="text-[#B22222]/40 text-[8px]">◆</span>
@@ -139,7 +139,7 @@ export default function CredibilityBlock() {
         <div>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-[2px] bg-[#B22222]" />
-            <span className="text-[#B22222] text-xs tracking-[0.3em] uppercase font-semibold">About Joe</span>
+            <span className="text-[#E84444] text-xs tracking-[0.3em] uppercase font-semibold">About Joe</span>
           </div>
           <h2 className="text-[#E8E8E8] font-serif font-bold text-4xl md:text-5xl leading-tight mb-2">
             Joseph Diele
@@ -174,7 +174,7 @@ export default function CredibilityBlock() {
       <div className="border-t border-white/5 py-5 overflow-hidden">
         <div className="flex items-center">
           <div className="flex-shrink-0 pl-8 pr-8 border-r border-white/10">
-            <p className="text-white/30 text-xs tracking-[0.3em] uppercase whitespace-nowrap">
+            <p className="text-white/50 text-xs tracking-[0.3em] uppercase whitespace-nowrap">
               Career Built At
             </p>
           </div>

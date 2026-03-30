@@ -321,7 +321,7 @@ export default function HeroConceptE() {
 
       {/* Scroll hint */}
       {!hasScrolled && (
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3 text-white/40 animate-bounce">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-3 text-white/60 animate-bounce">
           <span className="text-xs tracking-widest uppercase">Scroll to continue</span>
           <svg width="16" height="20" viewBox="0 0 16 20" fill="none">
             <path d="M8 1v14M2 10l6 6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

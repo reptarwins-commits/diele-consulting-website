@@ -56,7 +56,7 @@ export default function Services() {
         <div className={`max-w-2xl mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-6 h-[1px] bg-[#B22222]" />
-            <span className="text-[#B22222] text-xs tracking-[0.3em] uppercase font-semibold">How We Work Together</span>
+            <span className="text-[#E84444] text-xs tracking-[0.3em] uppercase font-semibold">How We Work Together</span>
           </div>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#E8E8E8] mb-4">
             Every engagement is built for your situation.

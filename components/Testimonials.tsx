@@ -161,7 +161,7 @@ export default function Testimonials() {
         <div className={`text-center mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="w-6 h-[1px] bg-[#B22222]" />
-            <span className="text-[#B22222] text-xs tracking-[0.3em] uppercase font-semibold">What Leaders Say</span>
+            <span className="text-[#E84444] text-xs tracking-[0.3em] uppercase font-semibold">What Leaders Say</span>
             <div className="w-6 h-[1px] bg-[#B22222]" />
           </div>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#E8E8E8]">

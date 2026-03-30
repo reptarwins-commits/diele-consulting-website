@@ -17,7 +17,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-[#E8E8E8] text-sm font-semibold mb-4 tracking-wide">Navigation</h4>
+            <h3 className="text-[#E8E8E8] text-sm font-semibold mb-4 tracking-wide">Navigation</h3>
             <ul className="space-y-2">
               {[
                 { label: "About", href: "/about" },
@@ -36,11 +36,11 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-[#E8E8E8] text-sm font-semibold mb-4 tracking-wide">Contact</h4>
+            <h3 className="text-[#E8E8E8] text-sm font-semibold mb-4 tracking-wide">Contact</h3>
             <ul className="space-y-2 text-sm">
               <li><a href="mailto:joe@dieleconsulting.com" className="text-[#909090] hover:text-[#B22222] transition-colors">joe@dieleconsulting.com</a></li>
               <li><a href="tel:7203987701" className="text-[#909090] hover:text-[#B22222] transition-colors">720-398-7701</a></li>
-              <li className="text-[#444444]">Westminster, CO</li>
+              <li className="text-[#777777]">Westminster, CO</li>
               <li className="pt-2">
                 <a href="https://www.linkedin.com/in/jdiele" target="_blank" rel="noopener noreferrer"
                   className="text-[#909090] hover:text-[#B22222] transition-colors">LinkedIn →</a>
@@ -50,8 +50,8 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[#444444] text-xs">© 2026 Diele Consulting LLC. All rights reserved.</p>
-          <p className="text-[#333333] text-xs">Westminster, CO · Available nationwide</p>
+          <p className="text-[#777777] text-xs">© 2026 Diele Consulting LLC. All rights reserved.</p>
+          <p className="text-[#777777] text-xs">Westminster, CO · Available nationwide</p>
         </div>
       </div>
     </footer>
