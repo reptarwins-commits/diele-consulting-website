@@ -48,7 +48,7 @@ const testimonials = [
     quote: "I worked for Joe in the Product Quality Dept at Sun Microsystems. He was a tremendous leader and still is a great mentor to me. He quickly recognized whenever my team was struggling and inspired and mentored us to solve issues from different approaches. He smartly guided us to make good business decisions while protecting our customers. He wisely taught me to not lose confidence when I failed. He inspired me to be persistent and to believe in my own abilities. Joe seemed to have a sixth sense about recognizing and developing upcoming leaders. He firmly believed that a good leader builds up others, and not pushing people down. He was an approachable mentor. No ego; no 'I told you so;' and certainly no malice in his generous heart. Even long after we no longer worked together, he's still available to me as a dear friend and very wise mentor. It's my privilege to endorse him as a great leader and mentor.",
     name: "Anh Bao",
     title: "Product Quality Manager",
-    company: "Sun Microsystems",
+    company: "Super Micro Computer",
     source: "LinkedIn",
   },
 ];
