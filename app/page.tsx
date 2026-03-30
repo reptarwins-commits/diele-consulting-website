@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/HeroConceptE3";
 import CredibilityBlock from "@/components/CredibilityBlock";
+import FeaturedOn from "@/components/FeaturedOn";
 import WhoThisIsFor from "@/components/WhoThisIsFor";
 import Framework from "@/components/Framework";
 import Services from "@/components/Services";
@@ -26,6 +27,7 @@ export default function Home() {
       <Nav />
       <Hero />
       <CredibilityBlock />
+      <FeaturedOn />
       <WhoThisIsFor />
       <Framework />
       <Services />
