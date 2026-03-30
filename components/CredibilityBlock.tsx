@@ -139,7 +139,7 @@ export default function CredibilityBlock() {
         <div>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-8 h-[2px] bg-[#B22222]" />
-            <span className="text-[#E84444] text-xs tracking-[0.3em] uppercase font-semibold">About Joe</span>
+            <span className="text-[#EC4545] text-xs tracking-[0.3em] uppercase font-semibold">About Joe</span>
           </div>
           <h2 className="text-[#E8E8E8] font-serif font-bold text-4xl md:text-5xl leading-tight mb-2">
             Joseph Diele

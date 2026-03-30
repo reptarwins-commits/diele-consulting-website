@@ -38,7 +38,7 @@ export default function Book() {
               />
             </a>
             <div className="absolute bottom-3 right-3 bg-[#111111] border border-[#B22222]/30 px-4 py-2 shadow-lg">
-              <p className="text-[#E84444] text-xs font-semibold">Business Expert Press</p>
+              <p className="text-[#EC4545] text-xs font-semibold">Business Expert Press</p>
               <p className="text-[#909090] text-[10px]">Published 2021</p>
             </div>
           </div>
@@ -48,7 +48,7 @@ export default function Book() {
         <div className={`pt-6 md:pt-4 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-6 h-[1px] bg-[#B22222]" />
-            <span className="text-[#E84444] text-xs tracking-[0.3em] uppercase font-semibold">Published Work</span>
+            <span className="text-[#EC4545] text-xs tracking-[0.3em] uppercase font-semibold">Published Work</span>
           </div>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#E8E8E8] mb-6 leading-tight">
             The intellectual foundation of every engagement.
@@ -111,7 +111,7 @@ export default function Book() {
               href="https://www.amazon.com/Sustainable-Quality-Joseph-Diele/dp/1953349625#customerReviews"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#909090] hover:text-[#E84444] text-xs mt-3 inline-block transition-colors duration-200"
+              className="text-[#909090] hover:text-[#EC4545] text-xs mt-3 inline-block transition-colors duration-200"
             >
               See all reviews on Amazon →
             </a>

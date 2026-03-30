@@ -29,7 +29,7 @@ export default function WhoThisIsFor() {
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-6 h-[1px] bg-[#B22222]" />
-            <span className="text-[#E84444] text-xs tracking-[0.3em] uppercase font-semibold">Who This Is For</span>
+            <span className="text-[#EC4545] text-xs tracking-[0.3em] uppercase font-semibold">Who This Is For</span>
           </div>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#E8E8E8] mb-6 leading-tight">
             You might be in the right place if&hellip;
@@ -49,20 +49,16 @@ export default function WhoThisIsFor() {
         <div className={`transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}>
           <ul className="space-y-3">
             {signals.map((signal, i) => (
-              /* Reveal wrapper — carries the stagger delay */
-              <div
+              <li
                 key={i}
-                className={`transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                className={`flex gap-4 p-4 border border-white/5 bg-[#1a1a1a] hover:border-[#B22222] hover:bg-[#2a1515] hover:shadow-lg hover:shadow-[#B22222]/10 hover:-translate-x-1 cursor-default group list-none transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
                 style={{ transitionDelay: `${300 + i * 80}ms` }}
               >
-                {/* Hover target — zero delay, instant response */}
-                <li className="flex gap-4 p-4 border border-white/5 bg-[#1a1a1a] hover:border-[#B22222] hover:bg-[#2a1515] hover:shadow-lg hover:shadow-[#B22222]/10 hover:-translate-x-1 transition-all duration-200 cursor-default group list-none">
-                  <div className="mt-1 w-4 h-4 border border-[#B22222]/50 flex items-center justify-center flex-shrink-0">
-                    <div className="w-1.5 h-1.5 bg-[#B22222] group-hover:scale-125 transition-transform duration-150" />
-                  </div>
-                  <span className="text-[#C8C8C8] group-hover:text-white text-base leading-relaxed transition-colors duration-150">{signal}</span>
-                </li>
-              </div>
+                <div className="mt-1 w-4 h-4 border border-[#B22222]/50 flex items-center justify-center flex-shrink-0">
+                  <div className="w-1.5 h-1.5 bg-[#B22222] group-hover:scale-125 transition-transform duration-150" />
+                </div>
+                <span className="text-[#C8C8C8] group-hover:text-white text-base leading-relaxed transition-colors duration-150">{signal}</span>
+              </li>
             ))}
           </ul>
         </div>
