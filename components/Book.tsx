@@ -31,7 +31,7 @@ export default function Book() {
             >
               <Image
                 src="/images/sustainable-quality-cover-3d.png"
-                alt="Sustainable Quality by Joseph Diele"
+                alt="Sustainable Quality book by Joseph Diele — a practical guide to building quality-driven cultures in technology organizations"
                 width={320}
                 height={427}
                 className="w-full h-auto hover:scale-[1.02] transition-transform duration-500"

@@ -126,7 +126,7 @@ export default function CredibilityBlock() {
           <div className="relative aspect-[3/4] overflow-hidden rounded-[4px]">
             <Image
               src="/images/joe-headshot.jpg"
-              alt="Joseph Diele"
+              alt="Joseph Diele, executive coach and leadership consultant for technical leaders, based in Colorado"
               fill
               className="object-cover object-top"
               sizes="300px"
