@@ -9,6 +9,7 @@ export interface PostMeta {
   title: string;
   date: string;
   excerpt: string;
+  description?: string;
   readTime: string;
   category: string;
 }

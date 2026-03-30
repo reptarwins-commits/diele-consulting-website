@@ -14,15 +14,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return {};
+  const metaDescription = post.description ?? post.excerpt;
   return {
     title: post.title,
-    description: post.excerpt,
+    description: metaDescription,
     alternates: {
       canonical: `https://www.dieleconsulting.com/blog/${slug}`,
     },
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description: metaDescription,
       url: `https://www.dieleconsulting.com/blog/${slug}`,
       type: "article",
       authors: ["Joe Diele"],
