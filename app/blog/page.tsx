@@ -1,6 +1,7 @@
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import BlogIndex from "@/components/blog/BlogIndex";
+import { getAllPosts } from "@/lib/posts";
 
 export const metadata = {
   title: "Leadership Blog for Technical Leaders | Diele Consulting",
@@ -12,10 +13,11 @@ export const metadata = {
 };
 
 export default function BlogPage() {
+  const posts = getAllPosts();
   return (
     <main className="bg-[#111111] min-h-screen">
       <Nav />
-      <BlogIndex />
+      <BlogIndex posts={posts} />
       <Footer />
     </main>
   );

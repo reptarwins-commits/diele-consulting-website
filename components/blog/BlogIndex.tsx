@@ -1,63 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { PostMeta } from "@/lib/posts";
 
-const posts = [
-  {
-    slug: "from-expert-to-leader",
-    title: "From Expert to Leader: What Nobody Tells You",
-    excerpt: "You were promoted because you were the best at what you did. Then everything changed — and nobody warned you it would feel like this.",
-    date: "March 1, 2026",
-    readTime: "7 min read",
-    category: "Leadership",
-    featured: true,
-  },
-  {
-    slug: "what-my-kids-learned-from-me",
-    title: "What My Kids Learned From Me",
-    excerpt: "I never sat them down and taught them these things. I was too busy working. But somehow, in the margins of all that bustle, they were watching.",
-    date: "March 25, 2026",
-    readTime: "4 min read",
-    category: "Leadership",
-    featured: false,
-  },
-  {
-    slug: "remote-culture-problem",
-    title: "The Remote Culture Problem",
-    excerpt: "You built the culture in the office. You are not sure it survived the distance.",
-    date: "March 24, 2026",
-    readTime: "3 min read",
-    category: "Leadership",
-    featured: false,
-  },
-  {
-    slug: "character-of-a-leader",
-    title: "The Character of a Leader",
-    excerpt: "Real leaders don't need to tell you they are leaders. You know it by watching how they move through difficult decisions.",
-    date: "February 25, 2026",
-    readTime: "3 min read",
-    category: "Leadership",
-    featured: false,
-  },
-  {
-    slug: "hands-on-manager-trap",
-    title: "The Hands-On Manager Trap",
-    excerpt: "Promoting your best technical expert into a player-coach role feels efficient. It isn't. It's a slow sentence for their career and your culture.",
-    date: "February 15, 2026",
-    readTime: "6 min read",
-    category: "Leadership",
-    featured: false,
-  },
-  {
-    slug: "mentor-who-changed-everything",
-    title: "The Mentor Who Changed Everything",
-    excerpt: "He said it simply, almost offhand. 'Technical skills can open doors, but people skills keep them open.' I nodded. I thought I knew better.",
-    date: "February 22, 2026",
-    readTime: "5 min read",
-    category: "Leadership",
-    featured: false,
-  },
-];
+// Posts are now passed as props from the server component (auto-reads content/posts/)
+// This replaces the old hardcoded list — no manual updates needed for new posts.
 
 const externalPieces = [
   {
@@ -74,7 +21,7 @@ const externalPieces = [
   },
 ];
 
-function PostCard({ post, index }: { post: typeof posts[0]; index: number }) {
+function PostCard({ post, index }: { post: PostMeta; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -97,7 +44,7 @@ function PostCard({ post, index }: { post: typeof posts[0]; index: number }) {
         <div className="flex items-center gap-3 mb-4">
           <span className="text-[#B22222] text-[10px] tracking-[0.25em] uppercase font-semibold">{post.category}</span>
           <span className="text-white/20">·</span>
-          <span className="text-[#909090] text-xs">{post.date}</span>
+          <span className="text-[#909090] text-xs">{formatDate(post.date)}</span>
           <span className="text-white/20">·</span>
           <span className="text-[#909090] text-xs">{post.readTime}</span>
         </div>
@@ -113,15 +60,21 @@ function PostCard({ post, index }: { post: typeof posts[0]; index: number }) {
   );
 }
 
-export default function BlogIndex() {
+function formatDate(dateStr: string) {
+  const d = new Date(dateStr + "T12:00:00");
+  return d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+}
+
+export default function BlogIndex({ posts }: { posts: PostMeta[] }) {
   const [heroVisible, setHeroVisible] = useState(false);
 
   useEffect(() => {
     setTimeout(() => setHeroVisible(true), 100);
   }, []);
 
-  const featured = posts.find(p => p.featured);
-  const rest = posts.filter(p => !p.featured);
+  // Most recent post is featured
+  const featured = posts[0] ?? null;
+  const rest = posts.slice(1);
 
   return (
     <div className="bg-[#111111] min-h-screen">
@@ -151,7 +104,7 @@ export default function BlogIndex() {
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-[#B22222] text-[10px] tracking-[0.25em] uppercase font-semibold">{featured.category}</span>
                 <span className="text-white/20">·</span>
-                <span className="text-[#909090] text-xs">{featured.date}</span>
+                <span className="text-[#909090] text-xs">{formatDate(featured.date)}</span>
                 <span className="text-white/20">·</span>
                 <span className="text-[#909090] text-xs">{featured.readTime}</span>
               </div>
