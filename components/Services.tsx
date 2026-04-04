@@ -116,8 +116,11 @@ export default function Services() {
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#E8E8E8] mb-4">
             Every engagement is built for your situation.
           </h2>
-          <p className="text-[#C8C8C8]">
+          <p className="text-[#C8C8C8] mb-3">
             No off-the-shelf programs. No generic workshops. Everything starts with understanding what's actually happening in your organization.
+          </p>
+          <p className="text-[#C8C8C8]">
+            We start by understanding where you are and where you need to be. Then we build the bridge to get you there — together.
           </p>
         </div>
 
