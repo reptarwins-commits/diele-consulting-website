@@ -1,31 +1,26 @@
-import Nav from "@/components/Nav";
+import AboutHero from "@/components/AboutHero";
+import AboutStory from "@/components/AboutStory";
+import AboutCredentials from "@/components/AboutCredentials";
+import AboutIdealClient from "@/components/AboutIdealClient";
 import Footer from "@/components/Footer";
-import AboutHero from "@/components/about/AboutHero";
-import OriginStory from "@/components/about/OriginStory";
-import CareerTimeline from "@/components/about/CareerTimeline";
-import Credentials from "@/components/about/Credentials";
-import Publications from "@/components/about/Publications";
-import AboutCTA from "@/components/about/AboutCTA";
+import Nav from "@/components/Nav";
+import ScrollProgress from "@/components/ScrollProgress";
 
 export const metadata = {
-  title: "About Joe Diele | Executive Coach for Engineers & Technical Leaders",
+  title: "About | Joseph Diele — Leadership Coach & Founder, Diele Consulting",
   description:
-    "35 years of technical leadership experience. Joe Diele coaches CTOs, VPs of Engineering, and technical founders through the leadership transition — from best engineer in the room to effective people leader. Colorado-based, serving leaders nationwide.",
-  alternates: {
-    canonical: "https://www.dieleconsulting.com/about",
-  },
+    "35+ years leading teams in startups and Fortune 500 companies. Author of Sustainable Quality. Performance = Potential - Interference.",
 };
 
 export default function AboutPage() {
   return (
-    <main className="bg-[#111111] min-h-screen">
+    <main>
+      <ScrollProgress />
       <Nav />
       <AboutHero />
-      <OriginStory />
-      <CareerTimeline />
-      <Credentials />
-      <Publications />
-      <AboutCTA />
+      <AboutStory />
+      <AboutIdealClient />
+      <AboutCredentials />
       <Footer />
     </main>
   );

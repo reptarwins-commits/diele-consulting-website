@@ -143,6 +143,7 @@ export default function HeroV2() {
   const [visible, setVisible] = useState(false);
   const [wordsVisible, setWordsVisible] = useState(0);
   const [taglineReady, setTaglineReady] = useState(false);     // stage 3: tagline writes in
+  const [tickerReady, setTickerReady] = useState(false);
   const [parallaxY, setParallaxY] = useState(0);
   const leaderRef = useRef<HTMLSpanElement>(null);
 
@@ -163,6 +164,8 @@ export default function HeroV2() {
         // Stage 2: underline handled purely via CSS animation-delay in globals.css
         // Stage 3: tagline writes in 1s after underline starts
         setTimeout(() => setTaglineReady(true), 150 + 1400 + 1250);
+        // Ticker after tagline
+        setTimeout(() => setTickerReady(true), 150 + 1400 + 1250 + tagline.length * 38 + 200);
       }
     }, 55);
     return () => clearInterval(interval);
@@ -262,7 +265,30 @@ className="text-[#B22222] text-4xl md:text-5xl leading-tight block" style={{ fon
             </a>
           </div>
 
-
+          {/* Credentials */}
+          <div className="border-t border-white/10 pt-6">
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-white/50 text-sm mb-2">
+              {["CECM", "Lean Six Sigma Black Belt", "Published Author", "35 Years"].map((c, i) => (
+                <span key={i} className="flex items-center gap-3">
+                  {i > 0 && <span className="text-[#B22222]">·</span>}
+                  {c}
+                </span>
+              ))}
+            </div>
+            <div className="overflow-hidden h-5">
+              <div
+                className={`flex gap-8 text-white/25 text-xs whitespace-nowrap transition-opacity duration-500 ${tickerReady ? "opacity-100" : "opacity-0"}`}
+                style={{ animation: tickerReady ? "ticker 14s linear infinite" : "none" }}
+              >
+                {["Dell", "SanDisk", "Sun Microsystems", "ScaleFlux", "Liqid", "StorageTek"].map((co, i) => (
+                  <span key={i} className="flex items-center gap-8">{co}<span className="text-[#B22222]/40">·</span></span>
+                ))}
+                {["Dell", "SanDisk", "Sun Microsystems", "ScaleFlux", "Liqid", "StorageTek"].map((co, i) => (
+                  <span key={`d-${i}`} className="flex items-center gap-8">{co}<span className="text-[#B22222]/40">·</span></span>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -44,13 +44,6 @@ const testimonials = [
     company: "Western Digital",
     source: "LinkedIn",
   },
-  {
-    quote: "I worked for Joe in the Product Quality Dept at Sun Microsystems. He was a tremendous leader and still is a great mentor to me. He quickly recognized whenever my team was struggling and inspired and mentored us to solve issues from different approaches. He smartly guided us to make good business decisions while protecting our customers. He wisely taught me to not lose confidence when I failed. He inspired me to be persistent and to believe in my own abilities. Joe seemed to have a sixth sense about recognizing and developing upcoming leaders. He firmly believed that a good leader builds up others, and not pushing people down. He was an approachable mentor. No ego; no 'I told you so;' and certainly no malice in his generous heart. Even long after we no longer worked together, he's still available to me as a dear friend and very wise mentor. It's my privilege to endorse him as a great leader and mentor.",
-    name: "Anh Bao",
-    title: "Product Quality Manager",
-    company: "Super Micro Computer",
-    source: "LinkedIn",
-  },
 ];
 
 const INTERVAL = 5000;
@@ -161,7 +154,7 @@ export default function Testimonials() {
         <div className={`text-center mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="w-6 h-[1px] bg-[#B22222]" />
-            <span className="text-[#EC4545] text-xs tracking-[0.3em] uppercase font-semibold">What Leaders Say</span>
+            <span className="text-[#B22222] text-xs tracking-[0.3em] uppercase font-semibold">What Leaders Say</span>
             <div className="w-6 h-[1px] bg-[#B22222]" />
           </div>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#E8E8E8]">
