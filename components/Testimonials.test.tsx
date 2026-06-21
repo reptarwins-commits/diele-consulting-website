@@ -1,4 +1,4 @@
-import { render, screen, act, fireEvent } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import Testimonials from "./Testimonials";
 
@@ -53,22 +53,15 @@ describe("Testimonials carousel", () => {
     expect(width).toBeCloseTo((slides / 2) * 100, 1);
   });
 
-  it("previews long recommendations behind a 'Show full recommendation' control", () => {
+  it("shows each recommendation in full with no expand toggle", () => {
     render(<Testimonials />);
-    // The tail of Anh's long quote is hidden until expanded.
-    expect(screen.queryAllByText(/privilege to endorse him/i).length).toBe(0);
-    expect(
-      screen.getAllByRole("button", { name: /show full recommendation/i }).length,
-    ).toBeGreaterThan(0);
-  });
-
-  it("expands to reveal the full recommendation when the control is clicked", () => {
-    render(<Testimonials />);
-    fireEvent.click(
-      screen.getAllByRole("button", { name: /show full recommendation/i })[0],
-    );
+    // The full text of even the longest quote is rendered (no truncation)...
     expect(
       screen.getAllByText(/privilege to endorse him/i).length,
     ).toBeGreaterThan(0);
+    // ...and there is no show full / show less control.
+    expect(
+      screen.queryByRole("button", { name: /show (full recommendation|less)/i }),
+    ).not.toBeInTheDocument();
   });
 });
