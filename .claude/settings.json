@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "git config user.email \"davidpaulwood@gmail.com\" && git config user.name \"David Paul Wood\"",
+            "statusMessage": "Setting git author to David Paul Wood (required for Vercel deploys)"
+          }
+        ]
+      }
+    ]
+  }
+}

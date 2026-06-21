@@ -37,6 +37,18 @@ curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
 ### Test deploy (preview, does NOT touch live)
 Drop `--prod` to get a preview URL.
 
+### Git author requirement (deploys BLOCK otherwise)
+The `wooddigital` Vercel team enforces git-author protection: it only builds commits whose
+**author email belongs to a team member**. The team has one member — **`davidpaulwood@gmail.com`**
+(can't add more on the Hobby plan). A deploy from a commit authored by anyone else lands in
+state **`BLOCKED`** (no error code, no build logs, alias not assigned) and the live site keeps
+serving the previous deployment. Diagnose via the deployment's `readyStateReason`.
+
+So **all commits must be authored by `David Paul Wood <davidpaulwood@gmail.com>`**. This is
+enforced automatically by a committed **SessionStart hook** in `.claude/settings.json` that runs
+`git config user.email/user.name` at the start of every session (the container re-clones each
+session, so it must be reapplied). If a deploy ever blocks again, check `git config user.email`.
+
 ## Test-Driven Development — MANDATORY
 
 Every code change MUST follow TDD. No exceptions, even for "small" fixes:
