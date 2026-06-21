@@ -51,6 +51,14 @@ Never write implementation code before its test. If asked for a change and no
 test exists yet, write the test first and show it failing before touching
 the implementation.
 
+### Test tooling
+- **Vitest** + **Testing Library** (`@testing-library/react`) for unit/component tests.
+  Config: `vitest.config.ts` · global setup/mocks: `vitest.setup.ts` (mocks
+  `IntersectionObserver` and `requestAnimationFrame` for scroll/count-up components).
+- Test files live next to source as `*.test.tsx` / `*.test.ts`.
+- Commands: `npm test` (run once) · `npm run test:watch` · `npm run test:coverage`.
+- **Playwright** (via the MCP server) for visual/e2e verification — see below.
+
 ### Front-end / UI changes — visual confirmation is also MANDATORY
 
 Automated tests don't catch a broken-LOOKING page. So for ANY change that
