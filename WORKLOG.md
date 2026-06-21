@@ -8,9 +8,16 @@ This file is the project's running memory between Claude Code sessions.
 ## Current Session
 
 **Date**: 2026-06-21
-**Focus**: Testimonials cadence 5s→3s; merge to `main` + production deploy; diagnose & fix Vercel git-author deploy block
+**Focus**: Testimonials cadence 5s→3s; add Anh Bao + 2-up expandable carousel; merge to `main` + production deploy; diagnose & fix Vercel git-author deploy block
 
 ### What Was Done
+- **New testimonial — Anh Bao** (Product Quality Manager, Supermicro) added to the carousel.
+- **2-up carousel + expandable recommendations** (`components/Testimonials.tsx`), via TDD (4 new tests,
+  red→green): desktop now shows **2 wider cards** (1 on mobile); long quotes render a ~200-char preview
+  behind a **"Show full recommendation"** toggle; expanding grows **all cards together to the tallest
+  card's height** (global expand); auto-advance **pauses while expanded**. Verified with Playwright —
+  collapsed + expanded screenshots, all cards equalized to 524px, 0 console errors. Deployed to production
+  (live bundle contains "Anh Bao" + "Show full recommendation").
 - **Testimonials carousel cadence 5s → 3s** (`components/Testimonials.tsx`, `INTERVAL` 5000→3000), via TDD:
   wrote a failing behavioral test first (`components/Testimonials.test.tsx`, fake timers + active-dot
   assertion), confirmed red, made the change, confirmed green. Full suite 2/2.
