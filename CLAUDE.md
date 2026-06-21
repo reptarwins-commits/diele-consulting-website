@@ -55,6 +55,16 @@ via the Claude Code web environment settings:
 If a fresh session can't deploy, re-create `.claude/settings.local.json` with these values
 (never commit it — it holds the secret token).
 
+## MCP servers (`.mcp.json`)
+Declared in `.mcp.json` (committed) so they load in every web session:
+- **notion** — `@notionhq/notion-mcp-server`. Needs a `NOTION_TOKEN` env var (a Notion
+  internal-integration token, `ntn_…`) set in the web environment config. The integration
+  must be shared with the specific Notion pages/databases you want reachable.
+- **playwright** — `@playwright/mcp` (headless). Requires browser binaries; the web setup
+  script must run `npx playwright install --with-deps chromium`.
+
+MCP changes only take effect in a **new** session.
+
 ## Branches
 - `main` — live production state. Keep it equal to what's deployed.
 - `divergent-blog-work` — unshipped exploratory work (full blog with MDX posts, a
