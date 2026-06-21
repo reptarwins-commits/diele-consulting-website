@@ -51,9 +51,24 @@ via the Claude Code web environment settings:
 - `VERCEL_TOKEN` — Vercel deploy token (secret)
 - `VERCEL_ORG_ID` = `team_CxLaTArzhv7Jc8EitMK9M2v8`
 - `VERCEL_PROJECT_ID` = `prj_MGHnErjBJnN4E1z8LF9RPljnN9pI`
+- `NOTION_TOKEN` — Notion internal integration secret (`ntn_…`)
 
 If a fresh session can't deploy, re-create `.claude/settings.local.json` with these values
 (never commit it — it holds the secret token).
+
+## Setup script (web environment config)
+The following must be set as the **Setup script** in the Claude Code web environment settings.
+It runs before each session starts:
+
+```bash
+#!/bin/bash
+npm install
+npx playwright install --with-deps chromium
+```
+
+`npm install` ensures dependencies are ready. `playwright install` fetches the Chromium
+binary that `@playwright/mcp` needs — without it the Playwright MCP server loads but
+browser actions will fail.
 
 ## MCP servers (`.mcp.json`)
 Declared in `.mcp.json` (committed) so they load in every web session:
