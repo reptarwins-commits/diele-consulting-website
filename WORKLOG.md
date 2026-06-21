@@ -8,6 +8,48 @@ This file is the project's running memory between Claude Code sessions.
 ## Current Session
 
 **Date**: 2026-06-21
+**Focus**: Add MCP integrations (Notion, Playwright), mandatory TDD rules, and a runnable test harness
+
+### What Was Done
+- Added **`.mcp.json`** (committed) declaring two MCP servers, both verified loading in-session:
+  - **notion** — `@notionhq/notion-mcp-server`, auth via `NOTION_TOKEN` env var (`${NOTION_TOKEN}`).
+  - **playwright** — `@playwright/mcp` headless+isolated.
+- Confirmed web env config: `NOTION_TOKEN` present; setup script already runs
+  `npm install` + `npx playwright install --with-deps chromium`. Installed Chromium in-session.
+- Added **mandatory TDD ruleset** to `CLAUDE.md` (red-green-refactor; write failing test first)
+  plus a **mandatory Playwright visual-verification** step for any UI/visual change
+  (open page → screenshot → check console/network → show screenshot before calling it done).
+- Set up a **Vitest + Testing Library** harness so the TDD rule is actually runnable:
+  - `vitest.config.ts`, `vitest.setup.ts` (mocks `IntersectionObserver` + `requestAnimationFrame`).
+  - npm scripts `test`, `test:watch`, `test:coverage`.
+  - Sample `components/Stats.test.tsx` — passing (1/1), proves the harness works end-to-end.
+
+### Key Decisions
+- Test framework: **Vitest** (not Jest) — faster, native ESM, better React 19 / Tailwind v4 fit.
+- MCP secrets referenced via `${NOTION_TOKEN}` so the token stays out of the repo (set in web env).
+- Test tooling persists every session automatically: committed config + deps in `package.json`,
+  installed by the setup script's `npm install` at session start.
+
+### Key Files Changed
+| File | Change |
+|------|--------|
+| .mcp.json | Added Notion + Playwright MCP servers |
+| CLAUDE.md | Added TDD rules, visual-verification rule, test-tooling + setup-script docs |
+| vitest.config.ts, vitest.setup.ts | New Vitest config + jsdom global mocks |
+| package.json | Added test scripts + Vitest/Testing Library devDeps |
+| components/Stats.test.tsx | Sample passing component test |
+
+### In Progress
+- None — integrations + TDD tooling complete and verified.
+
+### Blockers
+- None.
+
+---
+
+## Session: 2026-06-21 — OpenClaw → Claude Code transition
+
+**Date**: 2026-06-21
 **Focus**: Transition off OpenClaw → Claude Code; establish single source of truth and deploy pipeline
 
 ### What Was Done
