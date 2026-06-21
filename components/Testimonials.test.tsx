@@ -1,4 +1,4 @@
-import { render, screen, act } from "@testing-library/react";
+import { render, screen, act, fireEvent } from "@testing-library/react";
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import Testimonials from "./Testimonials";
 
@@ -34,5 +34,41 @@ describe("Testimonials carousel", () => {
       vi.advanceTimersByTime(200);
     });
     expect(activeDotIndex()).toBe(1);
+  });
+
+  it("includes Anh Bao's testimonial", () => {
+    render(<Testimonials />);
+    expect(screen.getAllByText("Anh Bao").length).toBeGreaterThan(0);
+    expect(
+      screen.getAllByText(/Product Quality Manager · Supermicro/).length,
+    ).toBeGreaterThan(0);
+  });
+
+  it("shows two cards at a time on desktop (2-up)", () => {
+    render(<Testimonials />);
+    const track = screen.getByTestId("carousel-track");
+    const slides = track.children.length;
+    const width = parseFloat(track.style.width);
+    // 2-up: the track is wide enough to show exactly 2 slides per viewport.
+    expect(width).toBeCloseTo((slides / 2) * 100, 1);
+  });
+
+  it("previews long recommendations behind a 'Show full recommendation' control", () => {
+    render(<Testimonials />);
+    // The tail of Anh's long quote is hidden until expanded.
+    expect(screen.queryAllByText(/privilege to endorse him/i).length).toBe(0);
+    expect(
+      screen.getAllByRole("button", { name: /show full recommendation/i }).length,
+    ).toBeGreaterThan(0);
+  });
+
+  it("expands to reveal the full recommendation when the control is clicked", () => {
+    render(<Testimonials />);
+    fireEvent.click(
+      screen.getAllByRole("button", { name: /show full recommendation/i })[0],
+    );
+    expect(
+      screen.getAllByText(/privilege to endorse him/i).length,
+    ).toBeGreaterThan(0);
   });
 });

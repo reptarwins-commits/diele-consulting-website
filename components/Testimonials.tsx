@@ -44,16 +44,32 @@ const testimonials = [
     company: "Western Digital",
     source: "LinkedIn",
   },
+  {
+    quote: "I worked for Joe in the Product Quality Dept at Sun Microsystems. He was a tremendous leader and still is a great mentor to me. He quickly recognized whenever my team was struggling and inspired and mentored us to solve issues from different approaches. He smartly guided us to make good business decisions while protecting our customers. He wisely taught me to not lose confidence when I failed. He inspired me to be persistent and to believe in my own abilities. Joe seemed to have a sixth sense about recognizing and developing upcoming leaders. He firmly believed that a good leader builds up others, and not pushing people down. He was an approachable mentor. No ego; no \"I told you so;\" and certainly no malice in his generous heart. Even long after we no longer worked together, he's still available to me as a dear friend and very wise mentor. It's my privilege to endorse him as a great leader and mentor.",
+    name: "Anh Bao",
+    title: "Product Quality Manager",
+    company: "Supermicro",
+    source: "LinkedIn",
+  },
 ];
 
 const INTERVAL = 3000;
 const MD_BREAKPOINT = 768; // Tailwind md breakpoint
+const PREVIEW_CHARS = 200;
+
+// Show a word-boundary preview of long quotes; the full text reveals on expand.
+function previewText(quote: string) {
+  if (quote.length <= PREVIEW_CHARS) return quote;
+  const slice = quote.slice(0, PREVIEW_CHARS);
+  const lastSpace = slice.lastIndexOf(" ");
+  return slice.slice(0, lastSpace > 0 ? lastSpace : PREVIEW_CHARS).trimEnd() + "…";
+}
 
 function useVisibleCount() {
-  const [count, setCount] = useState(3);
+  const [count, setCount] = useState(2);
   useEffect(() => {
     function update() {
-      setCount(window.innerWidth < MD_BREAKPOINT ? 1 : 3);
+      setCount(window.innerWidth < MD_BREAKPOINT ? 1 : 2);
     }
     update();
     window.addEventListener("resize", update);
@@ -67,6 +83,7 @@ export default function Testimonials() {
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
   const isResetting = useRef(false);
   const visibleCount = useVisibleCount();
@@ -137,12 +154,12 @@ export default function Testimonials() {
     setIndex((prev) => prev + 1);
   }, []);
 
-  // Auto-advance
+  // Auto-advance (paused while a recommendation is expanded for reading)
   useEffect(() => {
-    if (paused || !initialized) return;
+    if (paused || !initialized || expanded) return;
     const timer = setInterval(goNext, INTERVAL);
     return () => clearInterval(timer);
-  }, [goNext, paused, initialized]);
+  }, [goNext, paused, initialized, expanded]);
 
   // Responsive math: track width and slide distance adapt to visibleCount
   const trackWidthPercent = (extended.length / visibleCount) * 100;
@@ -171,7 +188,8 @@ export default function Testimonials() {
           <div className="overflow-hidden">
             <div
               ref={trackRef}
-              className="flex"
+              data-testid="carousel-track"
+              className="flex items-stretch"
               style={{
                 width: `${trackWidthPercent}%`,
                 transform: `translateX(${translatePercent}%)`,
@@ -180,7 +198,7 @@ export default function Testimonials() {
             >
               {extended.map((t, i) => (
                 <div key={i} className="px-3 flex-shrink-0" style={{ width: `${100 / extended.length}%` }}>
-                  <TestimonialCard t={t} />
+                  <TestimonialCard t={t} expanded={expanded} onToggle={() => setExpanded((v) => !v)} />
                 </div>
               ))}
             </div>
@@ -205,8 +223,18 @@ export default function Testimonials() {
   );
 }
 
-function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
+function TestimonialCard({
+  t,
+  expanded,
+  onToggle,
+}: {
+  t: typeof testimonials[0];
+  expanded: boolean;
+  onToggle: () => void;
+}) {
   const [hovered, setHovered] = useState(false);
+  const isTruncatable = t.quote.length > PREVIEW_CHARS;
+  const shownQuote = expanded || !isTruncatable ? t.quote : previewText(t.quote);
   return (
     <div
       className={`group relative p-6 pt-4 bg-[#1a1a1a] border border-white/5 transition-all duration-300 h-full flex flex-col
@@ -223,8 +251,20 @@ function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
           &ldquo;
         </span>
       </div>
-      <p className="text-[#C8C8C8] text-sm leading-relaxed mb-6 italic flex-1">{t.quote}</p>
-      <div className="flex items-center gap-3 pt-4 border-t border-white/5">
+      <div className="flex-1">
+        <p className="text-[#C8C8C8] text-sm leading-relaxed italic">{shownQuote}</p>
+        {isTruncatable && (
+          <button
+            type="button"
+            onClick={onToggle}
+            aria-expanded={expanded}
+            className="mt-3 text-[#B22222] hover:text-[#d14b4b] text-[11px] font-semibold uppercase tracking-wider transition-colors"
+          >
+            {expanded ? "Show less" : "Show full recommendation"}
+          </button>
+        )}
+      </div>
+      <div className="flex items-center gap-3 mt-6 pt-4 border-t border-white/5">
         <div className="w-10 h-10 bg-[#2a2a2a] flex items-center justify-center flex-shrink-0 transition-colors duration-300 group-hover:bg-[#B22222]/20">
           <span className="text-[#B22222] font-serif font-bold text-sm">
             {t.name.split(" ").map((n: string) => n[0]).join("")}
