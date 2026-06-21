@@ -37,6 +37,35 @@ curl -s -H "Authorization: Bearer $VERCEL_TOKEN" \
 ### Test deploy (preview, does NOT touch live)
 Drop `--prod` to get a preview URL.
 
+## Test-Driven Development — MANDATORY
+
+Every code change MUST follow TDD. No exceptions, even for "small" fixes:
+
+1. Write a failing test that defines the expected behavior.
+2. Run it. Confirm it FAILS (proves the test is real).
+3. Write the minimum code to make it pass.
+4. Run it. Confirm it PASSES.
+5. Refactor while keeping the test green.
+
+Never write implementation code before its test. If asked for a change and no
+test exists yet, write the test first and show it failing before touching
+the implementation.
+
+### Front-end / UI changes — visual confirmation is also MANDATORY
+
+Automated tests don't catch a broken-LOOKING page. So for ANY change that
+affects what the page looks like (HTML structure, CSS/layout, components,
+anything visual), you MUST also verify it visually with Playwright before
+reporting it done:
+
+1. Use Playwright to open the affected page in a browser.
+2. Take a screenshot of it.
+3. Check the browser console for errors and any failed network requests,
+   and report them.
+4. Show the screenshot so Joe can confirm it looks correct.
+
+Do not say a UI change is "done" until you've produced this screenshot.
+
 ## Standard workflow
 1. Edit files in the Claude Code session
 2. Commit and `git push` to `main`
