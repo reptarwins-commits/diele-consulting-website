@@ -13,6 +13,10 @@
 # testing
 /coverage
 
+# playwright mcp visual-verification artifacts
+/.playwright-mcp/
+/test-results/
+
 # next.js
 /.next/
 /out/

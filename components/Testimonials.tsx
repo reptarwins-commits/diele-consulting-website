@@ -46,7 +46,7 @@ const testimonials = [
   },
 ];
 
-const INTERVAL = 5000;
+const INTERVAL = 3000;
 const MD_BREAKPOINT = 768; // Tailwind md breakpoint
 
 function useVisibleCount() {
