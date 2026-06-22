@@ -8,6 +8,45 @@ This file is the project's running memory between Claude Code sessions.
 ## Current Session
 
 **Date**: 2026-06-22
+**Focus**: Notion-backed blog at /blog — built, verified, then hidden behind a feature flag until Joe adds posts
+
+### What Was Done
+- **Researched LinkedIn auto-pull** — not viable (official API partner-gated; MCP/scrapers are
+  unofficial, ToS-violating, fragile, and not a production daily job). Chose **Notion-controlled** content.
+- **New Notion-backed blog** reusing the `divergent-blog-work` UI:
+  - `lib/notion.ts` — `getAllPosts()`/`getPost()` via `@notionhq/client@2` + `notion-to-md@3` → `marked`;
+    pure `mapPageToMeta()` is unit-tested.
+  - `app/blog/page.tsx` + `app/blog/[slug]/page.tsx` (ISR `revalidate=3600`, `dynamicParams`),
+    `components/blog/BlogIndex.tsx`, `.prose-joe` styles, Nav "Blog" link.
+  - `app/api/cron/refresh-blog` + `vercel.json` cron (daily 13:00 UTC) → `revalidatePath('/blog')`,
+    guarded by `CRON_SECRET` (the "each morning" refresh).
+- **Created the Notion DB via API** under the "Diele Consulting Home" page: **"Blog Posts"**,
+  `NOTION_BLOG_DB_ID=38753dd6-8139-817c-9956-daec117ffe16` (props: Title, Slug, Date, Category,
+  Excerpt, Description, Status, Read Time). Seeded a "Welcome" starter post.
+- **Verified end-to-end** with Playwright (index + post rendered from Notion, 0 console errors).
+- **Hid the blog** per request: `lib/flags.ts` `BLOG_ENABLED` (= `NEXT_PUBLIC_BLOG_ENABLED === "true"`,
+  off by default). While off, the Nav + Footer "Blog" links are hidden and `/blog` + `/blog/[slug]`
+  return 404. Verified live: `/blog` 404, 0 "Blog" refs on home.
+- Vercel env set: `NOTION_TOKEN`, `NOTION_BLOG_DB_ID`, `CRON_SECRET`. Local: `.env.local` (gitignored).
+
+### To reveal the blog (once Joe has added posts)
+1. In the Notion "Blog Posts" DB, add posts and set **Status = Published** (edit/delete the "Welcome" sample).
+2. Set **`NEXT_PUBLIC_BLOG_ENABLED=true`** in the Vercel `diele-consulting` project env.
+3. Redeploy. The blog appears in the nav/footer and `/blog` goes live (refreshing daily via cron + ISR).
+
+### Key Decisions
+- Content via Notion (reliable, ToS-safe) over scraping LinkedIn. A Zapier/Make bridge could later
+  drop LinkedIn posts into the same DB with no code change.
+- Pinned `@notionhq/client@2` (+ `notion-to-md@3`) for the classic `databases.query` API.
+
+### Blockers
+- None. Blog is built + deployed but hidden until Joe populates the DB and the flag is flipped.
+
+---
+
+## Session: 2026-06-22 — Hero refinements & About section
+
+**Date**: 2026-06-22
 **Focus**: Remove hero headshot; add an "About Joe" bio section before Book (ticker relocated below it); plus a series of hero animation/layout refinements
 
 ### What Was Done
