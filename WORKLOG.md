@@ -8,7 +8,7 @@ This file is the project's running memory between Claude Code sessions.
 ## Current Session
 
 **Date**: 2026-06-22
-**Focus**: Remove hero headshot; add an "About Joe" bio section before Book (with the company ticker relocated below it)
+**Focus**: Remove hero headshot; add an "About Joe" bio section before Book (ticker relocated below it); plus a series of hero animation/layout refinements
 
 ### What Was Done
 - **Hero** (`components/HeroV2.tsx`): removed the right-side headshot + parallax, widened the
@@ -24,6 +24,22 @@ This file is the project's running memory between Claude Code sessions.
 - TDD: `components/HeroV2.test.tsx` (no headshot/ticker) + `components/AboutBio.test.tsx` (bio,
   headshot, a credential, `/about` link, ticker). Suite **9/9**, typecheck clean. Verified with
   Playwright (hero, bio, ticker; single `#about`; 0 console errors) and **deployed to production**.
+
+**Hero animation/layout refinements (same session — each TDD'd, Playwright-verified, deployed):**
+- Widened the headline + paragraph to align with the nav "Book a Call" right edge (dropped the
+  `max-w-3xl`/`max-w-2xl` caps).
+- Staged the body reveal: 1s after the tagline finishes writing, fade in paragraph → CTAs →
+  credentials (transition-delays 0 / 0.5s / 1s) via a new `contentReady` state.
+- Restored the subtle background grid (white 1px lines, 80px, opacity 0.025; copied from the old
+  `components/Hero.tsx`, it had been lost) as a `z-0` layer + a presence test. Then shifted it up
+  10px and added a diagonal alpha mask (`to bottom right, black 30% → transparent 85%`) so it
+  fades out toward the bottom-right.
+- Re-timed the "leader" effect: appears white with the headline → 1s pause → fades white→red
+  (700ms) → underline draws → tagline → content (`leaderRed` + `underlineReady` states; underline
+  now gated on `underlineReady`).
+- Synced the eyebrow ("Executive Coaching & Leadership Development") to fade in **with** the CTAs
+  (`contentReady`, 500ms delay).
+- Final suite **13/13**, typecheck clean.
 
 ### Key Decisions
 - Bio modeled on Joe's screenshot example: headshot on the LEFT, placement **before Book** (his
