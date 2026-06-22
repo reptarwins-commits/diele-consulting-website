@@ -7,6 +7,37 @@ This file is the project's running memory between Claude Code sessions.
 
 ## Current Session
 
+**Date**: 2026-06-22
+**Focus**: Remove hero headshot; add an "About Joe" bio section before Book (with the company ticker relocated below it)
+
+### What Was Done
+- **Hero** (`components/HeroV2.tsx`): removed the right-side headshot + parallax, widened the
+  left-aligned content (`max-w-xl`→`max-w-3xl`, lead `max-w-lg`→`max-w-2xl`), and removed the
+  company ticker. Credentials line kept.
+- **New `components/AboutBio.tsx`** (modeled on `Book.tsx`): headshot LEFT, "About Joe" eyebrow +
+  "Joseph Diele" + role line + bio + credential pills (CECM · LSS Black Belt · M.S. Org. Leadership ·
+  Author — Sustainable Quality) + a "More about Joe →" link to `/about`, with the **relocated
+  company ticker** scrolling as a strip directly below. Wired in **before `Book`** in `app/page.tsx`.
+- Added the missing **`@keyframes ticker`** to `app/globals.css` — the old hero ticker referenced an
+  undefined keyframe so it never actually scrolled; marquee uses duplicated items + `translateX(-50%)`.
+- Removed the vestigial duplicate `id="about"` from `components/WhoThisIsFor.tsx` so the bio owns it.
+- TDD: `components/HeroV2.test.tsx` (no headshot/ticker) + `components/AboutBio.test.tsx` (bio,
+  headshot, a credential, `/about` link, ticker). Suite **9/9**, typecheck clean. Verified with
+  Playwright (hero, bio, ticker; single `#about`; 0 console errors) and **deployed to production**.
+
+### Key Decisions
+- Bio modeled on Joe's screenshot example: headshot on the LEFT, placement **before Book** (his
+  explicit pick), and the company ticker **moved out of the hero to below the bio**.
+- Hero kept **left-aligned and widened** (no centering, no replacement graphic — right side is
+  intentional open space).
+
+### Blockers
+- None.
+
+---
+
+## Session: 2026-06-21 — Testimonials (cadence, Anh Bao, 2-up carousel)
+
 **Date**: 2026-06-21
 **Focus**: Testimonials cadence 5s→3s; add Anh Bao + 2-up expandable carousel; merge to `main` + production deploy; diagnose & fix Vercel git-author deploy block
 
