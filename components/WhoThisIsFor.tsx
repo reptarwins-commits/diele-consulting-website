@@ -23,7 +23,7 @@ export default function WhoThisIsFor() {
   }, []);
 
   return (
-    <section id="about" ref={ref} className="py-24 bg-[#111111]">
+    <section ref={ref} className="py-24 bg-[#111111]">
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
         {/* Left */}
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>

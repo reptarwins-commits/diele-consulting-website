@@ -4,6 +4,7 @@ import Stats from "@/components/Stats";
 import WhoThisIsFor from "@/components/WhoThisIsFor";
 import Framework from "@/components/Framework";
 import Services from "@/components/Services";
+import AboutBio from "@/components/AboutBio";
 import Book from "@/components/Book";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
@@ -20,6 +21,7 @@ export default function Home() {
       <WhoThisIsFor />
       <Framework />
       <Services />
+      <AboutBio />
       <Book />
       <Testimonials />
       <CTA />

@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 
 const headline = "The skills that made you the best engineer in the room won't make you the best".split(" ");
 const headlineEnd = ["leader."];
@@ -143,8 +142,6 @@ export default function HeroV2() {
   const [visible, setVisible] = useState(false);
   const [wordsVisible, setWordsVisible] = useState(0);
   const [taglineReady, setTaglineReady] = useState(false);     // stage 3: tagline writes in
-  const [tickerReady, setTickerReady] = useState(false);
-  const [parallaxY, setParallaxY] = useState(0);
   const leaderRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -164,18 +161,10 @@ export default function HeroV2() {
         // Stage 2: underline handled purely via CSS animation-delay in globals.css
         // Stage 3: tagline writes in 1s after underline starts
         setTimeout(() => setTaglineReady(true), 150 + 1400 + 1250);
-        // Ticker after tagline
-        setTimeout(() => setTickerReady(true), 150 + 1400 + 1250 + tagline.length * 38 + 200);
       }
     }, 55);
     return () => clearInterval(interval);
   }, [visible]);
-
-  useEffect(() => {
-    const onScroll = () => setParallaxY(window.scrollY * 0.2);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const allWords = [
     ...headline.map(w => ({ word: w, accent: false })),
@@ -187,29 +176,11 @@ export default function HeroV2() {
       {/* Red top line */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#B22222] z-20" />
 
-      {/* Right-side photo */}
-      <div
-        className="absolute right-0 top-0 bottom-0 w-full md:w-[55%] z-0"
-        style={{ transform: `translateY(${parallaxY}px)`, willChange: "transform" }}
-      >
-        <Image
-          src="/images/joe-headshot.jpg"
-          alt="Joseph Diele"
-          fill
-          className="object-cover"
-          style={{ objectPosition: "center center" }}
-          priority
-          sizes="55vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-[#111111]/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-[#111111]/30" />
-      </div>
-
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#111111] to-transparent z-10" />
 
       {/* Content */}
       <div className="relative z-20 w-full max-w-6xl mx-auto px-6 pt-24 pb-20">
-        <div className={`hero-content relative max-w-xl transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`hero-content relative max-w-3xl transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
 
           {/* Eyebrow */}
           <div className="flex items-center gap-3 mb-8">
@@ -250,7 +221,7 @@ className="text-[#B22222] text-4xl md:text-5xl leading-tight block" style={{ fon
             />
           </div>
 
-          <p className="text-[#C8C8C8] text-base leading-relaxed mb-10 max-w-lg">
+          <p className="text-[#C8C8C8] text-base leading-relaxed mb-10 max-w-2xl">
             You got to where you are because of what you know. Getting to what's next requires learning how to lead. I've been where you are — not as a coach who studied it, but as someone who lived it.
           </p>
 
@@ -267,26 +238,13 @@ className="text-[#B22222] text-4xl md:text-5xl leading-tight block" style={{ fon
 
           {/* Credentials */}
           <div className="border-t border-white/10 pt-6">
-            <div className="flex flex-wrap gap-x-5 gap-y-2 text-white/50 text-sm mb-2">
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-white/50 text-sm">
               {["CECM", "Lean Six Sigma Black Belt", "Published Author", "35 Years"].map((c, i) => (
                 <span key={i} className="flex items-center gap-3">
                   {i > 0 && <span className="text-[#B22222]">·</span>}
                   {c}
                 </span>
               ))}
-            </div>
-            <div className="overflow-hidden h-5">
-              <div
-                className={`flex gap-8 text-white/25 text-xs whitespace-nowrap transition-opacity duration-500 ${tickerReady ? "opacity-100" : "opacity-0"}`}
-                style={{ animation: tickerReady ? "ticker 14s linear infinite" : "none" }}
-              >
-                {["Dell", "SanDisk", "Sun Microsystems", "ScaleFlux", "Liqid", "StorageTek"].map((co, i) => (
-                  <span key={i} className="flex items-center gap-8">{co}<span className="text-[#B22222]/40">·</span></span>
-                ))}
-                {["Dell", "SanDisk", "Sun Microsystems", "ScaleFlux", "Liqid", "StorageTek"].map((co, i) => (
-                  <span key={`d-${i}`} className="flex items-center gap-8">{co}<span className="text-[#B22222]/40">·</span></span>
-                ))}
-              </div>
             </div>
           </div>
         </div>
