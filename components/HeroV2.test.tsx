@@ -12,4 +12,17 @@ describe("HeroV2", () => {
     render(<HeroV2 />);
     expect(screen.queryAllByText(/ScaleFlux/i).length).toBe(0);
   });
+
+  it("gates the paragraph, CTAs, and credentials (hidden initially, revealed after the tagline)", () => {
+    render(<HeroV2 />);
+    // None of the three appear with the rest of the hero — they start hidden and
+    // are faded in later (timing/sequence verified separately with Playwright).
+    const paragraph = screen.getByText(/You got to where you are/);
+    const ctaWrapper = screen.getByText("See How It Works").closest("div.flex");
+    const credentialsWrapper = screen.getByText("CECM").closest("div.border-t");
+
+    expect(paragraph.className).toContain("opacity-0");
+    expect(ctaWrapper?.className).toContain("opacity-0");
+    expect(credentialsWrapper?.className).toContain("opacity-0");
+  });
 });

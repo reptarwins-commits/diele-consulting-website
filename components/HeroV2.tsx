@@ -142,6 +142,7 @@ export default function HeroV2() {
   const [visible, setVisible] = useState(false);
   const [wordsVisible, setWordsVisible] = useState(0);
   const [taglineReady, setTaglineReady] = useState(false);     // stage 3: tagline writes in
+  const [contentReady, setContentReady] = useState(false);     // stage 4: body content fades in (staggered)
   const leaderRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -159,8 +160,14 @@ export default function HeroV2() {
       if (i >= total) {
         clearInterval(interval);
         // Stage 2: underline handled purely via CSS animation-delay in globals.css
-        // Stage 3: tagline writes in 1s after underline starts
-        setTimeout(() => setTaglineReady(true), 150 + 1400 + 1250);
+        // Stage 3: tagline writes in after the underline
+        const taglineDelay = 150 + 1400 + 1250;
+        setTimeout(() => setTaglineReady(true), taglineDelay);
+        // Stage 4: once the tagline finishes writing, wait 1s, then fade the body content in (staggered)
+        setTimeout(
+          () => setContentReady(true),
+          taglineDelay + tagline.length * 38 + 1000,
+        );
       }
     }, 55);
     return () => clearInterval(interval);
@@ -221,12 +228,18 @@ className="text-[#B22222] text-4xl md:text-5xl leading-tight block" style={{ fon
             />
           </div>
 
-          <p className="text-[#C8C8C8] text-base leading-relaxed mb-10">
+          {/* Stage 4, part 1: paragraph */}
+          <p
+            className={`text-[#C8C8C8] text-base leading-relaxed mb-10 transition-all duration-700 ${contentReady ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+          >
             You got to where you are because of what you know. Getting to what's next requires learning how to lead. I've been where you are — not as a coach who studied it, but as someone who lived it.
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
+          {/* Stage 4, part 2: CTAs */}
+          <div
+            className={`flex flex-col sm:flex-row gap-4 mb-12 transition-all duration-700 ${contentReady ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+            style={{ transitionDelay: "500ms" }}
+          >
             <HeroPrimaryButton />
             <a
               href="#services"
@@ -236,8 +249,11 @@ className="text-[#B22222] text-4xl md:text-5xl leading-tight block" style={{ fon
             </a>
           </div>
 
-          {/* Credentials */}
-          <div className="border-t border-white/10 pt-6">
+          {/* Stage 4, part 3: credentials */}
+          <div
+            className={`border-t border-white/10 pt-6 transition-all duration-700 ${contentReady ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+            style={{ transitionDelay: "1000ms" }}
+          >
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-white/50 text-sm">
               {["CECM", "Lean Six Sigma Black Belt", "Published Author", "35 Years"].map((c, i) => (
                 <span key={i} className="flex items-center gap-3">
