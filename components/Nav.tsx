@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
+import { BLOG_ENABLED } from "@/lib/flags";
 
 const links = [
   { label: "About", href: "/about" },
   { label: "Services", href: "#services" },
-  { label: "Blog", href: "/blog" },
+  ...(BLOG_ENABLED ? [{ label: "Blog", href: "/blog" }] : []),
   { label: "Resources", href: "/resources" },
 ];
 

@@ -1,7 +1,9 @@
+import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import BlogIndex from "@/components/blog/BlogIndex";
 import { getAllPosts } from "@/lib/notion";
+import { BLOG_ENABLED } from "@/lib/flags";
 
 // Re-fetch from Notion at most hourly; the daily Vercel Cron forces a morning refresh.
 export const revalidate = 3600;
@@ -16,6 +18,7 @@ export const metadata = {
 };
 
 export default async function BlogPage() {
+  if (!BLOG_ENABLED) notFound();
   const posts = await getAllPosts();
   return (
     <main className="bg-[#111111] min-h-screen">

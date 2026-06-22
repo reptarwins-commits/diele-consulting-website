@@ -4,16 +4,19 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BLOG_ENABLED } from "@/lib/flags";
 
 export const revalidate = 3600;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
+  if (!BLOG_ENABLED) return [];
   const posts = await getAllPosts();
   return posts.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  if (!BLOG_ENABLED) return {};
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) return {};
@@ -35,6 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+  if (!BLOG_ENABLED) notFound();
   const { slug } = await params;
   const post = await getPost(slug);
   if (!post) notFound();
