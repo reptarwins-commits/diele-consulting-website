@@ -188,6 +188,9 @@ export default function HeroV2() {
           backgroundImage:
             "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
           backgroundSize: "80px 80px",
+          backgroundPosition: "0 -10px",
+          maskImage: "linear-gradient(to bottom right, black 30%, transparent 85%)",
+          WebkitMaskImage: "linear-gradient(to bottom right, black 30%, transparent 85%)",
         }}
       />
 
