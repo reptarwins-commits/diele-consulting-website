@@ -1,3 +1,5 @@
+import { BLOG_ENABLED } from "@/lib/flags";
+
 export default function Footer() {
   return (
     <footer className="bg-[#111111] border-t border-white/5 py-12">
@@ -19,9 +21,9 @@ export default function Footer() {
           <div>
             <h4 className="text-[#E8E8E8] text-sm font-semibold mb-4 tracking-wide">Navigation</h4>
             <ul className="space-y-2">
-              {["About", "Services", "Blog", "Book a Call"].map((item) => (
+              {["About", "Services", ...(BLOG_ENABLED ? ["Blog"] : []), "Book a Call"].map((item) => (
                 <li key={item}>
-                  <a href={`#${item.toLowerCase().replace(" ", "-")}`}
+                  <a href={item === "Blog" ? "/blog" : `#${item.toLowerCase().replace(" ", "-")}`}
                     className="text-[#909090] hover:text-[#B22222] text-sm transition-colors duration-200">
                     {item}
                   </a>
