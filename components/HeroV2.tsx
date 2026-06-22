@@ -212,8 +212,11 @@ export default function HeroV2() {
       <div className="relative z-20 w-full max-w-6xl mx-auto px-6 pt-24 pb-20">
         <div className={`hero-content relative transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
 
-          {/* Eyebrow */}
-          <div className="flex items-center gap-3 mb-8">
+          {/* Eyebrow — fades in together with the CTAs */}
+          <div
+            className={`flex items-center gap-3 mb-8 transition-all duration-700 ${contentReady ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+            style={{ transitionDelay: "500ms" }}
+          >
             <div className="w-8 h-[2px] bg-[#B22222]" />
             <span className="text-[#B22222] text-xs tracking-[0.3em] uppercase font-semibold">
               Executive Coaching & Leadership Development

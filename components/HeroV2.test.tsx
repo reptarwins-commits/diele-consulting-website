@@ -25,6 +25,12 @@ describe("HeroV2", () => {
     expect(screen.getByTestId("hero-grid")).toBeInTheDocument();
   });
 
+  it("keeps the eyebrow hidden initially (it fades in with the CTAs)", () => {
+    render(<HeroV2 />);
+    const eyebrow = screen.getByText(/Executive Coaching/i).closest("div");
+    expect(eyebrow?.className).toContain("opacity-0");
+  });
+
   it("gates the paragraph, CTAs, and credentials (hidden initially, revealed after the tagline)", () => {
     render(<HeroV2 />);
     // None of the three appear with the rest of the hero — they start hidden and
