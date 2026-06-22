@@ -13,6 +13,13 @@ describe("HeroV2", () => {
     expect(screen.queryAllByText(/ScaleFlux/i).length).toBe(0);
   });
 
+  it("shows the word \"leader.\" in white first (it fades to red later)", () => {
+    render(<HeroV2 />);
+    const leader = screen.getByText("leader.");
+    expect(leader.className).toContain("text-white");
+    expect(leader.className).not.toContain("B22222");
+  });
+
   it("renders the subtle background grid layer", () => {
     render(<HeroV2 />);
     expect(screen.getByTestId("hero-grid")).toBeInTheDocument();

@@ -141,8 +141,10 @@ function WriteIn({ text, active, className = "", style, delay = 0 }: {
 export default function HeroV2() {
   const [visible, setVisible] = useState(false);
   const [wordsVisible, setWordsVisible] = useState(0);
-  const [taglineReady, setTaglineReady] = useState(false);     // stage 3: tagline writes in
-  const [contentReady, setContentReady] = useState(false);     // stage 4: body content fades in (staggered)
+  const [leaderRed, setLeaderRed] = useState(false);           // stage 2: "leader" fades white -> red
+  const [underlineReady, setUnderlineReady] = useState(false); // stage 3: underline draws
+  const [taglineReady, setTaglineReady] = useState(false);     // stage 4: tagline writes in
+  const [contentReady, setContentReady] = useState(false);     // stage 5: body content fades in (staggered)
   const leaderRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -159,11 +161,18 @@ export default function HeroV2() {
       setWordsVisible(i);
       if (i >= total) {
         clearInterval(interval);
-        // Stage 2: underline handled purely via CSS animation-delay in globals.css
-        // Stage 3: tagline writes in after the underline
-        const taglineDelay = 150 + 1400 + 1250;
+        // Stage 2: 1s after the headline finishes, fade "leader" from white to red
+        const RED_WAIT = 1000;
+        const RED_DURATION = 700;    // matches the leader color transition below
+        const UNDERLINE_DRAW = 1600; // UnderlineLayer's 400ms measure delay + 1.2s draw
+        setTimeout(() => setLeaderRed(true), RED_WAIT);
+        // Stage 3: once "leader" is fully red, start the underline
+        const underlineDelay = RED_WAIT + RED_DURATION;
+        setTimeout(() => setUnderlineReady(true), underlineDelay);
+        // Stage 4: after the underline draws, the tagline writes in
+        const taglineDelay = underlineDelay + UNDERLINE_DRAW;
         setTimeout(() => setTaglineReady(true), taglineDelay);
-        // Stage 4: once the tagline finishes writing, wait 1s, then fade the body content in (staggered)
+        // Stage 5: 1s after the tagline finishes writing, the body content fades in (staggered)
         setTimeout(
           () => setContentReady(true),
           taglineDelay + tagline.length * 38 + 1000,
@@ -222,7 +231,10 @@ export default function HeroV2() {
                 style={{ transitionDelay: `${i * 55}ms` }}
               >
                 {accent ? (
-                  <span ref={leaderRef} className="relative inline-block text-[#B22222]">
+                  <span
+                    ref={leaderRef}
+                    className={`relative inline-block transition-colors duration-700 ${leaderRed ? "text-[#B22222]" : "text-white"}`}
+                  >
                     {word}
                   </span>
                 ) : word}
@@ -231,7 +243,7 @@ export default function HeroV2() {
           </h1>
 
           {/* Stage 2: Underline — sibling of h1, positioned via JS under "leader." word */}
-          <UnderlineLayer leaderRef={leaderRef} trigger={wordsVisible >= headline.length + headlineEnd.length} />
+          <UnderlineLayer leaderRef={leaderRef} trigger={underlineReady} />
 
           {/* Stage 3: Tagline writes in letter by letter */}
           <div className="mb-6 min-h-[3.5rem] flex items-center">
