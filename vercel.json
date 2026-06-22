@@ -1,4 +1,10 @@
 {
+  "crons": [
+    {
+      "path": "/api/cron/refresh-blog",
+      "schedule": "0 13 * * *"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
