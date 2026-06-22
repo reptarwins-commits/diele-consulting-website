@@ -180,7 +180,7 @@ export default function HeroV2() {
 
       {/* Content */}
       <div className="relative z-20 w-full max-w-6xl mx-auto px-6 pt-24 pb-20">
-        <div className={`hero-content relative max-w-3xl transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`hero-content relative transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
 
           {/* Eyebrow */}
           <div className="flex items-center gap-3 mb-8">
@@ -221,7 +221,7 @@ className="text-[#B22222] text-4xl md:text-5xl leading-tight block" style={{ fon
             />
           </div>
 
-          <p className="text-[#C8C8C8] text-base leading-relaxed mb-10 max-w-2xl">
+          <p className="text-[#C8C8C8] text-base leading-relaxed mb-10">
             You got to where you are because of what you know. Getting to what's next requires learning how to lead. I've been where you are — not as a coach who studied it, but as someone who lived it.
           </p>
 
