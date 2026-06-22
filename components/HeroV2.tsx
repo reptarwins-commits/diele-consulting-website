@@ -180,6 +180,17 @@ export default function HeroV2() {
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-[#111111]">
+      {/* Subtle background grid */}
+      <div
+        data-testid="hero-grid"
+        className="absolute inset-0 z-0 opacity-[0.025]"
+        style={{
+          backgroundImage:
+            "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+        }}
+      />
+
       {/* Red top line */}
       <div className="absolute top-0 left-0 right-0 h-[3px] bg-[#B22222] z-20" />
 

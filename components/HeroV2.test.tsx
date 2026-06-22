@@ -13,6 +13,11 @@ describe("HeroV2", () => {
     expect(screen.queryAllByText(/ScaleFlux/i).length).toBe(0);
   });
 
+  it("renders the subtle background grid layer", () => {
+    render(<HeroV2 />);
+    expect(screen.getByTestId("hero-grid")).toBeInTheDocument();
+  });
+
   it("gates the paragraph, CTAs, and credentials (hidden initially, revealed after the tagline)", () => {
     render(<HeroV2 />);
     // None of the three appear with the rest of the hero — they start hidden and
