@@ -7,6 +7,50 @@ This file is the project's running memory between Claude Code sessions.
 
 ## Current Session
 
+**Date**: 2026-06-25
+**Focus**: Planned the LinkedIn → blog backfill — pull Joe's LinkedIn posts into the existing
+(hidden) Notion-backed blog via LinkedIn's official data export. Planning only; awaiting the upload.
+
+### What Was Done
+- Chose the approach: LinkedIn's official **"Get a copy of your data" export** (his own data,
+  ToS-safe, complete back to his first post) over browser scraping (not viable from this remote
+  session; ToS-risky; incomplete).
+- Designed a 3-step pipeline feeding the already-built **"Blog Posts"** Notion DB
+  (`38753dd6-8139-817c-9956-daec117ffe16`, read by `lib/notion.ts`, still hidden behind `BLOG_ENABLED`):
+  1. **Read-only inventory** of the export zip (counts by type — articles / text posts / reshares /
+     empty; date range; sample) → Joe picks scope.
+  2. **Import the chosen set as Drafts** via Notion REST (Title / Slug / Date / Category / Excerpt /
+     Read Time; Status=Draft; body = post text or article HTML→markdown→blocks; original permalink at
+     the foot; slug-idempotent).
+  3. **Joe curates** drafts in Notion → sets keepers to Published → flip `NEXT_PUBLIC_BLOG_ENABLED=true`
+     + redeploy (ISR + the daily cron already refresh `/blog`).
+- Captured the export gotcha: the archive arrives in two parts — a fast **Basic** export (NO
+  `Shares.csv`) and a later **Complete** export (~24h) that contains `Shares.csv` (the posts).
+  Long-form article full text comes most reliably from the dedicated à-la-carte **Articles** export.
+- Wrote the full pipeline design to the session plan file.
+
+### Key Decisions
+- Official data export over scraping — sanctioned, zero account risk, complete history.
+- **Inventory first, Joe decides scope** — no blanket import; short posts / pure-link reshares filtered.
+- Everything imports as **Draft** so the flag-gated blog stays hidden until Joe curates + flips the flag.
+- No app code changes — the blog pipeline already exists; this is Notion data + one env/redeploy at the end.
+
+### Key Files Changed
+| File | Change |
+|------|--------|
+| (none) | Planning only — no code changes this session |
+
+### In Progress
+- LinkedIn backfill — **Step 1 (read-only inventory)** is ready to run the moment the export lands.
+
+### Blockers
+- **Waiting on Joe to upload `Complete_LinkedInDataExport_*.zip`** (the Basic archive lacks
+  `Shares.csv`). Optionally also the à-la-carte **Articles** export for long-form full text.
+
+---
+
+## Session: 2026-06-22 — Notion-backed blog at /blog (built, hidden behind flag)
+
 **Date**: 2026-06-22
 **Focus**: Notion-backed blog at /blog — built, verified, then hidden behind a feature flag until Joe adds posts
 
