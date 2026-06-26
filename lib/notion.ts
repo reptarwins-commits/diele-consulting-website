@@ -33,7 +33,7 @@ function plain(rich?: Array<{ plain_text?: string }>): string {
     .trim();
 }
 
-function slugify(input: string): string {
+export function slugify(input: string): string {
   return input
     .toLowerCase()
     .trim()
@@ -43,7 +43,7 @@ function slugify(input: string): string {
     .replace(/^-|-$/g, "");
 }
 
-function readTimeFromText(text: string): string {
+export function readTimeFromText(text: string): string {
   const words = text.trim().split(/\s+/).filter(Boolean).length;
   if (!words) return "";
   return `${Math.max(1, Math.round(words / 200))} min read`;
