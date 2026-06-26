@@ -7,6 +7,61 @@ This file is the project's running memory between Claude Code sessions.
 
 ## Current Session
 
+**Date**: 2026-06-26
+**Focus**: Backfilled 50 real LinkedIn posts into the Notion blog from Joe's Google Drive
+"Post Archives", took the blog **LIVE**, spaced the post dates, and made the index cards equal height.
+
+### What Was Done
+- **Source pivot**: the LinkedIn export/HAR never delivered, so Joe shared a Google Drive folder
+  ("Post Archives", 71 `.docx`). It's a mixed drafting workspace — real posts + a lot of **AI-draft
+  sessions** (Gemini/CGPT/Perplexity, invented names, "let me know if you'd like adjustments"). Per
+  Joe: **real posts only**.
+- **Extracted + deduped 50 real posts** and imported them to the "Blog Posts" Notion DB. One-off
+  Python pipeline (session scratchpad): Drive `read_file_content` → fix double-encoded **bold
+  headlines** (latin-1→utf-8) → NFKC de-bold → split per-doc (bold-headline / blank-gap / `POST #N` /
+  `Post MM/DD` formats) → content-hash dedupe → Notion REST `pages.create`. Sources: Master List, 2026
+  weekly batches (Apr–Jun), 2025 docs (Jul–Sep, Sep-22, Nov launch + values series). Excluded the
+  AI-draft docs and the 34 MB `AUG23–FEB24` archive (too big for the tool).
+- **Tidied**: real titles for hook-sentence posts (kept the hook as the body opener), stripped
+  redundant heading lines, restored real per-post dates for the 2025 dated docs, evenly spaced the
+  undated Nov series.
+- **Took the blog live**: published all 50 (Status=Published), added `NEXT_PUBLIC_BLOG_ENABLED=true`
+  to Vercel (Production), deployed `main` to prod, unpublished the "Welcome" placeholder, forced a
+  `/api/cron/refresh-blog` revalidation.
+- **Equal-height index cards** (`components/blog/BlogIndex.tsx`): `auto-rows-fr` grid + full-height
+  flex-column cards + `flex-grow` excerpt so panels match and "Read essay" pins to the bottom. TDD'd
+  (`BlogIndex.test.tsx`), deployed.
+- **Verified live via curl** (the container's headless browser has no network egress, so no Playwright
+  screenshot this session): `/blog` 200, 50 posts newest-first, nav/footer Blog link, post bodies
+  render, homepage intact.
+
+### Key Decisions
+- **Real posts only** — excluded AI-draft ideation per Joe.
+- `getAllPosts()` already filters Published + sorts Date desc (newest-first) — no query change needed.
+- Dates: real per-post dates where the docs had them; even-spaced the undated series.
+
+### Key Files Changed
+| File | Change |
+|------|--------|
+| components/blog/BlogIndex.tsx | Equal-height post cards (auto-rows-fr + flex-col h-full + flex-grow excerpt) |
+| components/blog/BlogIndex.test.tsx | Tests for the equal-height layout |
+| Vercel env (Production) | Added `NEXT_PUBLIC_BLOG_ENABLED=true` |
+| Notion "Blog Posts" DB | +50 published posts; dates spaced |
+
+### In Progress / Follow-ups
+- 34 MB `LinkedIn Posts AUG23 - FEB24.docx` holds older 2023–24 real posts but is too large for
+  `read_file_content` — would need the raw `.docx`.
+- 2026 posts still cluster on a couple of dates (06-13, 04-06) — can be spaced like the 2025 ones.
+- LinkedIn **HAR-import tooling** remains on branch `claude/laughing-einstein-bnhfry` / draft PR #1
+  (not merged; superseded by the Drive-based import for this round).
+
+### Blockers
+- None — blog is live at https://dieleconsulting.com/blog with 50 posts.
+
+---
+
+## Session: 2026-06-25 — Planned the LinkedIn → blog backfill (export approach)
+
 **Date**: 2026-06-25
 **Focus**: Planned the LinkedIn → blog backfill — pull Joe's LinkedIn posts into the existing
 (hidden) Notion-backed blog via LinkedIn's official data export. Planning only; awaiting the upload.
