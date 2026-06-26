@@ -61,18 +61,18 @@ function PostCard({ post, index }: { post: PostMeta; index: number }) {
   return (
     <div
       ref={ref}
-      className={`transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+      className={`h-full transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
       <Link
         href={`/blog/${post.slug}`}
-        className="group block border border-white/5 bg-[#1a1a1a] hover:border-[#B22222]/40 hover:bg-[#150a0a] transition-all duration-200 p-8 hover:-translate-y-1"
+        className="group flex flex-col h-full border border-white/5 bg-[#1a1a1a] hover:border-[#B22222]/40 hover:bg-[#150a0a] transition-all duration-200 p-8 hover:-translate-y-1"
       >
         <Meta post={post} />
         <h3 className="font-serif text-xl md:text-2xl font-bold text-[#E8E8E8] group-hover:text-white mb-3 leading-tight transition-colors duration-200">
           {post.title}
         </h3>
-        <p className="text-[#C8C8C8] text-base leading-relaxed mb-5">{post.excerpt}</p>
+        <p className="text-[#C8C8C8] text-base leading-relaxed mb-5 flex-grow">{post.excerpt}</p>
         <span className="text-[#B22222] text-sm font-semibold group-hover:gap-3 flex items-center gap-2 transition-all duration-200">
           Read essay <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
         </span>
@@ -134,7 +134,7 @@ export default function BlogIndex({ posts }: { posts: PostMeta[] }) {
       {rest.length > 0 && (
         <section className="py-12 border-b border-white/5">
           <div className="max-w-4xl mx-auto px-6">
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-4 auto-rows-fr">
               {rest.map((post, i) => (
                 <PostCard key={post.slug} post={post} index={i} />
               ))}
