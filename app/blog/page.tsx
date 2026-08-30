@@ -5,8 +5,9 @@ import BlogIndex from "@/components/blog/BlogIndex";
 import { getAllPosts } from "@/lib/notion";
 import { BLOG_ENABLED } from "@/lib/flags";
 
-// Re-fetch from Notion at most hourly; the daily Vercel Cron forces a morning refresh.
-export const revalidate = 3600;
+// Auto-refresh from Notion at most every 5 minutes; the daily Vercel Cron and the
+// on-demand /api/cron/refresh-blog endpoint force a full refresh regardless of traffic.
+export const revalidate = 300;
 
 export const metadata = {
   title: "Leadership Blog for Technical Leaders | Diele Consulting",

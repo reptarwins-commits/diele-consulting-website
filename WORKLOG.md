@@ -7,6 +7,58 @@ This file is the project's running memory between Claude Code sessions.
 
 ## Current Session
 
+**Date**: 2026-08-30
+**Focus**: Made the Notion→site blog update as hands-off as possible — confirmed it's already
+fully automatic, tightened the refresh cadence, forced/verified a production refresh, and flagged
+a stale session Notion token.
+
+### What Was Done
+- **Confirmed the update path is already automatic** (no deploy needed). `/blog` + `/blog/[slug]`
+  are ISR, plus a daily Vercel Cron (`0 13 * * *`, ~9am ET) hits `/api/cron/refresh-blog`
+  (`revalidatePath`). The ONLY manual step is setting a post's **Status = Published** in Notion —
+  `getAllPosts()` filters `Status = Published`, sorted Date desc.
+- **Tightened auto-refresh from hourly → every 5 min**: `revalidate = 300` on both blog pages. TDD'd
+  (`app/blog/revalidate.test.ts`, imports both `revalidate` exports). A newly-published post now shows
+  within ~5 min of a visit, still CDN-cached/fast. NOTE: Vercel **Hobby caps cron at once/day**, so
+  the ISR window — not a more frequent cron — is the lever for faster propagation.
+- **Forced + verified a production refresh**: resolved the real `CRON_SECRET` from Vercel's
+  **per-variable** env endpoint (`/v9/projects/{id}/env/{envId}` — the *list* endpoint redacts
+  secret-type values, which is why the first attempt 401'd), hit `/api/cron/refresh-blog` →
+  `{"ok":true}`. A fresh Notion pull returned **61 Published posts, identical to what was already
+  live** — hourly ISR had already caught up on its own. Newest live: Aug 6 2026 "He Was Doing Two
+  Jobs." down through July.
+
+### ⚠️ Token heads-up (READ THIS next session)
+- The **`NOTION_TOKEN` visible to the session is INVALID** — both the local
+  `.claude/settings.local.json` value and what Vercel's env API returns give 401 "API token is
+  invalid" (Notion REST *and* the notion MCP). This does **NOT** affect the live site: *production's*
+  runtime token is valid (the forced refresh returned live data; the count grew 50→61 via ISR). But
+  any future session that needs to **write** to Notion (another import, edits) must refresh
+  `NOTION_TOKEN` in the environment settings first, and should verify Notion state **through
+  production**, not the session token.
+
+### Key Files Changed
+| File | Change |
+|------|--------|
+| app/blog/page.tsx | ISR `revalidate` 3600 → 300 (5-min auto-refresh) + comment |
+| app/blog/[slug]/page.tsx | ISR `revalidate` 3600 → 300 |
+| app/blog/revalidate.test.ts | New — asserts both pages' 5-min ISR window |
+
+### In Progress / Follow-ups
+- **Instant (event-driven) updates** — optional upgrade beyond the 5-min ISR: a Notion **webhook** →
+  a small `/api/notion-webhook` route that verifies Notion's signature and `revalidatePath`s `/blog`.
+  Needs a one-time subscription in Joe's Notion integration dashboard (the one step not doable from
+  the session) + a verification-token env var. Would make publishes go live in seconds. NOT built yet
+  — awaiting go-ahead.
+- Live blog is now **61 posts** (was 50 at go-live; Joe published more since).
+
+### Blockers
+- None for the live site. Session-side Notion *writes* are blocked until `NOTION_TOKEN` is refreshed.
+
+---
+
+## Session: 2026-06-26 — Backfilled 50 posts from Drive, took the blog live
+
 **Date**: 2026-06-26
 **Focus**: Backfilled 50 real LinkedIn posts into the Notion blog from Joe's Google Drive
 "Post Archives", took the blog **LIVE**, spaced the post dates, and made the index cards equal height.
