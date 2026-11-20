@@ -13,6 +13,27 @@ describe("Footer", () => {
     expect(screen.getByRole("link", { name: "Services" })).toBeInTheDocument();
   });
 
+  it("points About at /about, not an in-page anchor", () => {
+    render(<Footer />);
+    expect(screen.getByRole("link", { name: "About" })).toHaveAttribute("href", "/about");
+  });
+
+  it("points Book a Call at Calendly", () => {
+    render(<Footer />);
+    expect(screen.getByRole("link", { name: "Book a Call" })).toHaveAttribute(
+      "href",
+      "https://calendly.com/josephdiele",
+    );
+  });
+
+  it("links LinkedIn to /in/jdiele", () => {
+    render(<Footer />);
+    expect(screen.getByRole("link", { name: /LinkedIn/ })).toHaveAttribute(
+      "href",
+      "https://www.linkedin.com/in/jdiele",
+    );
+  });
+
   it("points Services at the /services page, not an in-page anchor", () => {
     render(<Footer />);
     expect(screen.getByRole("link", { name: "Services" })).toHaveAttribute("href", "/services");

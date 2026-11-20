@@ -71,7 +71,7 @@ export default function AboutCredentials() {
                 Book a Free 20-Minute Call →
               </a>
               <a
-                href="#services"
+                href="/services"
                 className="inline-block border border-white/20 text-[#C8C8C8] px-8 py-4 font-semibold hover:border-[#B22222] hover:text-white transition-colors duration-200"
               >
                 Explore Services

@@ -21,11 +21,17 @@ export default function Footer() {
           <div>
             <h4 className="text-[#E8E8E8] text-sm font-semibold mb-4 tracking-wide">Navigation</h4>
             <ul className="space-y-2">
-              {["About", "Services", ...(BLOG_ENABLED ? ["Blog"] : []), "Book a Call"].map((item) => (
-                <li key={item}>
-                  <a href={item === "Blog" ? "/blog" : item === "Services" ? "/services" : `#${item.toLowerCase().replace(" ", "-")}`}
+              {[
+                { label: "About", href: "/about" },
+                { label: "Services", href: "/services" },
+                ...(BLOG_ENABLED ? [{ label: "Blog", href: "/blog" }] : []),
+                { label: "Book a Call", href: "https://calendly.com/josephdiele", external: true },
+              ].map((item) => (
+                <li key={item.label}>
+                  <a href={item.href}
+                    {...("external" in item ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     className="text-[#909090] hover:text-[#B22222] text-sm transition-colors duration-200">
-                    {item}
+                    {item.label}
                   </a>
                 </li>
               ))}
@@ -39,7 +45,7 @@ export default function Footer() {
               <li><a href="tel:7203987701" className="text-[#909090] hover:text-[#B22222] transition-colors">720-398-7701</a></li>
               <li className="text-[#444444]">Westminster, CO</li>
               <li className="pt-2">
-                <a href="https://www.linkedin.com/in/josephdiele" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.linkedin.com/in/jdiele" target="_blank" rel="noopener noreferrer"
                   className="text-[#909090] hover:text-[#B22222] transition-colors">LinkedIn →</a>
               </li>
             </ul>
