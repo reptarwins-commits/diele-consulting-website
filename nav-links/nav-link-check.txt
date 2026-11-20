@@ -1,0 +1,25 @@
+
+/
+ header: Diele ConsultingJoseph Diele→/ | About→/about | Services→/services | Resources→/resources | Book a Call→https://calendly.com/josephdiele
+ footer: About→/about | Services→/services | Book a Call→https://calendly.com/josephdiele | joe@dieleconsulting.com→mailto:joe@dieleconsulting.com | 720-398-7701→tel:7203987701 | LinkedIn →→https://www.linkedin.com/in/jdiele
+ linkedin: https://www.linkedin.com/in/jdiele
+ recs in page: Anh Bao:true, Robert Mestas:true, Kevin Lehigh:true, Andrew Amalfitano:true
+ errors: none
+
+/about
+ header: Diele ConsultingJoseph Diele→/ | About→/about | Services→/services | Resources→/resources | Book a Call→https://calendly.com/josephdiele
+ footer: About→/about | Services→/services | Book a Call→https://calendly.com/josephdiele | joe@dieleconsulting.com→mailto:joe@dieleconsulting.com | 720-398-7701→tel:7203987701 | LinkedIn →→https://www.linkedin.com/in/jdiele
+ linkedin: https://www.linkedin.com/in/jdiele
+ errors: none
+
+/services
+ header: Diele ConsultingJoseph Diele→/ | About→/about | Services→/services | Resources→/resources | Book a Call→https://calendly.com/josephdiele
+ footer: About→/about | Services→/services | Book a Call→https://calendly.com/josephdiele | joe@dieleconsulting.com→mailto:joe@dieleconsulting.com | 720-398-7701→tel:7203987701 | LinkedIn →→https://www.linkedin.com/in/jdiele
+ linkedin: https://www.linkedin.com/in/jdiele
+ errors: none
+
+/resources
+ header: Diele ConsultingJoseph Diele→/ | About→/about | Services→/services | Resources→/resources | Book a Call→https://calendly.com/josephdiele
+ footer: About→/about | Services→/services | Book a Call→https://calendly.com/josephdiele | joe@dieleconsulting.com→mailto:joe@dieleconsulting.com | 720-398-7701→tel:7203987701 | LinkedIn →→https://www.linkedin.com/in/jdiele
+ linkedin: https://www.linkedin.com/in/jdiele
+ errors: none
