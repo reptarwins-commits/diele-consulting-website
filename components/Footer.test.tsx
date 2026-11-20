@@ -12,4 +12,9 @@ describe("Footer", () => {
     render(<Footer />);
     expect(screen.getByRole("link", { name: "Services" })).toBeInTheDocument();
   });
+
+  it("points Services at the /services page, not an in-page anchor", () => {
+    render(<Footer />);
+    expect(screen.getByRole("link", { name: "Services" })).toHaveAttribute("href", "/services");
+  });
 });

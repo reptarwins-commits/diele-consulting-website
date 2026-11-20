@@ -4,7 +4,7 @@ import { BLOG_ENABLED } from "@/lib/flags";
 
 const links = [
   { label: "About", href: "/about" },
-  { label: "Services", href: "#services" },
+  { label: "Services", href: "/services" },
   ...(BLOG_ENABLED ? [{ label: "Blog", href: "/blog" }] : []),
   { label: "Resources", href: "/resources" },
 ];

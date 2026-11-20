@@ -23,7 +23,7 @@ export default function Footer() {
             <ul className="space-y-2">
               {["About", "Services", ...(BLOG_ENABLED ? ["Blog"] : []), "Book a Call"].map((item) => (
                 <li key={item}>
-                  <a href={item === "Blog" ? "/blog" : `#${item.toLowerCase().replace(" ", "-")}`}
+                  <a href={item === "Blog" ? "/blog" : item === "Services" ? "/services" : `#${item.toLowerCase().replace(" ", "-")}`}
                     className="text-[#909090] hover:text-[#B22222] text-sm transition-colors duration-200">
                     {item}
                   </a>
