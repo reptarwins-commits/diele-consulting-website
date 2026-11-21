@@ -2,12 +2,12 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-const credentials = [
-  "CECM",
-  "LSS Black Belt",
-  "M.S. Org. Leadership",
-  "Author — Sustainable Quality",
-];
+// Approved P4 copy — use verbatim.
+const bio =
+  "35+ years across nine technology companies, moving from technical lead to manager to leader: StorageTek, Sun, Tristate, Fusion-io, SanDisk, ScaleFlux, Liqid, Dell and Priest-Zimmerman. I care about the people I work with, I stay calm when things get hard, and I've made the very same journey your managers are making.";
+
+const credentialLine =
+  "M.S. Management · Author, Sustainable Quality · Certified Executive Coach · Lean Six Sigma Black Belt";
 
 const companies = [
   "Sun Microsystems",
@@ -58,6 +58,7 @@ export default function AboutBio() {
 
         {/* Bio — right */}
         <div
+          data-testid="about-bio"
           className={`transition-all duration-700 delay-200 ${
             visible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
           }`}
@@ -74,22 +75,8 @@ export default function AboutBio() {
           <p className="text-[#909090] text-sm mb-6">
             Executive Coach &middot; Engineer-turned-Leader &middot; Author
           </p>
-          <p className="text-[#C8C8C8] text-base leading-relaxed mb-8 max-w-xl">
-            35 years across 9 companies &mdash; from engineer to CTO to coach. I&apos;ve lived
-            the transition you&apos;re navigating, and I know exactly where it breaks down. I
-            help technical leaders close the gap between what got them here and what it takes
-            to go further.
-          </p>
-          <div className="flex flex-wrap gap-3 mb-8">
-            {credentials.map((c) => (
-              <span
-                key={c}
-                className="text-[#909090] text-xs border border-white/10 px-3 py-1.5"
-              >
-                {c}
-              </span>
-            ))}
-          </div>
+          <p className="text-[#C8C8C8] text-base leading-relaxed mb-6 max-w-xl">{bio}</p>
+          <p className="text-[#909090] text-sm mb-8 max-w-xl">{credentialLine}</p>
           <a
             href="/about"
             className="inline-flex items-center gap-2 text-[#E8E8E8] font-semibold text-sm border-b border-[#B22222] pb-1 hover:text-[#B22222] transition-colors duration-200"
