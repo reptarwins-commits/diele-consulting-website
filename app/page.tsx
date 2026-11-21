@@ -2,7 +2,6 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/HeroV2";
 import Stats from "@/components/Stats";
 import WhoThisIsFor from "@/components/WhoThisIsFor";
-import Framework from "@/components/Framework";
 import Services from "@/components/Services";
 import AboutBio from "@/components/AboutBio";
 import Book from "@/components/Book";
@@ -20,7 +19,6 @@ export default function Home() {
       <Hero />
       <Stats />
       <WhoThisIsFor />
-      <Framework />
       <Services />
       <AboutBio />
       <Book />
