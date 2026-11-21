@@ -4,6 +4,18 @@ import { useEffect, useRef, useState } from "react";
 
 const resources = [
   {
+    // Approved final PDF (Joe, Nov 20). Description is the PDF's own subtitle.
+    title: "10 Signs You’re About to Lose Someone You Can’t Afford to Lose",
+    description:
+      "A practical guide for leaders who want to catch the warning signs before it’s too late",
+    highlights: [] as string[],
+    price: "Free",
+    groupSize: "PDF Download",
+    cta: "10 Signs You’re About to Lose Someone You Can’t Afford to Lose",
+    href: "/resources/10-signs-youre-about-to-lose-someone.pdf",
+    new: true,
+  },
+  {
     title: "People Excellence Workshop Overview",
     description:
       "A 3-day workshop for leadership teams who want to improve performance by bringing out the best in their people. Built for small business reality — especially tech companies and growing operational teams.",
@@ -81,6 +93,7 @@ export default function ResourcesList() {
               </p>
 
               {/* Highlights */}
+              {resource.highlights.length > 0 && (
               <ul className="grid md:grid-cols-2 gap-3 mb-8">
                 {resource.highlights.map((highlight, i) => (
                   <li key={i} className="flex items-start gap-2 text-[#C8C8C8]">
@@ -89,6 +102,7 @@ export default function ResourcesList() {
                   </li>
                 ))}
               </ul>
+              )}
 
               {/* Pricing (free items only; no prices on the site) */}
               <div className="border-t border-white/10 pt-6 mb-8">
