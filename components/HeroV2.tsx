@@ -1,9 +1,12 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 
-const headline = "The skills that made you the best engineer in the room won't make you the best".split(" ");
-const headlineEnd = ["leader."];
-const tagline = "I help you close that gap.";
+// Approved P1 copy — use verbatim.
+const eyebrow = "Leader Development for managers at hardware and software companies";
+const headline = "I bring out the best in you, by helping you bring out the best in the people you".split(" ");
+const headlineEnd = ["lead."];
+const tagline =
+  "I bring out the very best in managers and leaders at hardware and software companies. I've made the very same journey, from technical to leader.";
 
 
 // Absolutely positioned underline — lives OUTSIDE the word-reveal spans
@@ -93,48 +96,8 @@ function HeroPrimaryButton() {
       <div className="absolute top-0 right-0 w-[2px] bg-white transition-all ease-out" style={{ height: hovered ? "100%" : "0%", transitionDuration: "400ms", transitionDelay: "100ms" }} />
       <div className="absolute bottom-0 right-0 h-[2px] bg-white transition-all ease-out" style={{ width: hovered ? "100%" : "0%", transitionDuration: "400ms", transitionDelay: "200ms" }} />
       <div className="absolute bottom-0 left-0 w-[2px] bg-white transition-all ease-out" style={{ height: hovered ? "100%" : "0%", transitionDuration: "400ms", transitionDelay: "300ms" }} />
-      Schedule a Conversation
-      <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+      Book a Free 20-Minute Call →
     </a>
-  );
-}
-
-// Writes text character by character using clip-path reveal
-function WriteIn({ text, active, className = "", style, delay = 0 }: {
-  text: string; active: boolean; className?: string; style?: React.CSSProperties; delay?: number;
-}) {
-  const [charsVisible, setCharsVisible] = useState(0);
-
-  useEffect(() => {
-    if (!active) return;
-    let i = 0;
-    const msPerChar = 38; // speed of "writing"
-    const t = setTimeout(() => {
-      const interval = setInterval(() => {
-        i++;
-        setCharsVisible(i);
-        if (i >= text.length) clearInterval(interval);
-      }, msPerChar);
-    }, delay);
-    return () => clearTimeout(t);
-  }, [active, text, delay]);
-
-  return (
-    <span className={className} style={style}>
-      {text.split("").map((char, i) => (
-        <span
-          key={i}
-          style={{
-            opacity: i < charsVisible ? 1 : 0,
-            display: "inline-block",
-            width: char === " " ? "0.3em" : undefined,
-            transition: "opacity 0.06s ease",
-          }}
-        >
-          {char === " " ? "\u00A0" : char}
-        </span>
-      ))}
-    </span>
   );
 }
 
@@ -175,7 +138,7 @@ export default function HeroV2() {
         // Stage 5: 1s after the tagline finishes writing, the body content fades in (staggered)
         setTimeout(
           () => setContentReady(true),
-          taglineDelay + tagline.length * 38 + 1000,
+          taglineDelay + 1000,
         );
       }
     }, 55);
@@ -219,16 +182,17 @@ export default function HeroV2() {
           >
             <div className="w-8 h-[2px] bg-[#B22222]" />
             <span className="text-[#B22222] text-xs tracking-[0.3em] uppercase font-semibold">
-              Executive Coaching & Leadership Development
+              {eyebrow}
             </span>
           </div>
 
           {/* Stage 1: Word-reveal headline */}
           <h1 className="font-serif text-4xl md:text-5xl lg:text-[3.4rem] font-bold text-white leading-[1.1] mb-3">
             {allWords.map(({ word, accent }, i) => (
+              <React.Fragment key={i}>
+              {i > 0 && " "}
               <span
-                key={i}
-                className={`inline-block mr-[0.22em] transition-[opacity,transform] duration-300 ${
+                className={`inline-block transition-[opacity,transform] duration-300 ${
                   i < wordsVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 }`}
                 style={{ transitionDelay: `${i * 55}ms` }}
@@ -242,20 +206,19 @@ export default function HeroV2() {
                   </span>
                 ) : word}
               </span>
+              </React.Fragment>
             ))}
           </h1>
 
           {/* Stage 2: Underline — sibling of h1, positioned via JS under "leader." word */}
           <UnderlineLayer leaderRef={leaderRef} trigger={underlineReady} />
 
-          {/* Stage 3: Tagline writes in letter by letter */}
-          <div className="mb-6 min-h-[3.5rem] flex items-center">
-            <WriteIn
-              text={tagline}
-              active={taglineReady}
-className="text-[#B22222] text-4xl md:text-5xl leading-tight block" style={{ fontFamily: "var(--font-caveat)" }}
-            />
-          </div>
+          {/* Stage 3: Subhead fades in */}
+          <p
+            className={`text-[#E8E8E8] text-xl md:text-2xl leading-relaxed mb-6 max-w-3xl transition-all duration-700 ${taglineReady ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+          >
+            {tagline}
+          </p>
 
           {/* Stage 4, part 1: paragraph */}
           <p
@@ -271,10 +234,10 @@ className="text-[#B22222] text-4xl md:text-5xl leading-tight block" style={{ fon
           >
             <HeroPrimaryButton />
             <a
-              href="#services"
+              href="/results"
               className="border border-white/20 hover:border-white/50 text-white/70 hover:text-white font-semibold px-8 py-4 transition-all duration-300 flex items-center justify-center"
             >
-              See How It Works
+              See the results →
             </a>
           </div>
 
