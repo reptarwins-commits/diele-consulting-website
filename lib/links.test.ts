@@ -19,3 +19,12 @@ describe("site links", () => {
     expect(offenders).toEqual([]);
   });
 });
+
+describe("timespan claims", () => {
+  it("never says twenty years", () => {
+    const offenders = ["app", "components", "lib"]
+      .flatMap(sourceFiles)
+      .filter((f) => /twenty years/i.test(readFileSync(f, "utf8")));
+    expect(offenders).toEqual([]);
+  });
+});
