@@ -1,67 +1,26 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
+// Four tiles from P6. Bodies are the P6 bullets mapped per the Notion card;
+// do not add tile blurbs.
 const painCategories = [
   {
-    category: "Culture & Engagement",
-    icon: "🔥",
-    painPoints: [
-      "Best people are burning out, quitting, or going through the motions",
-      "Engagement is low, recognition is weak, psychological safety is thin",
-      "A key employee looks likely to leave",
-    ],
+    category: "Promotion readiness",
+    painPoints: ["Your best engineer is about to become a manager, and you want them ready before day one."],
   },
   {
-    category: "Communication & Alignment",
-    icon: "🎯",
-    painPoints: [
-      "Team is pulling in different directions; priorities are unclear",
-      "Information stays in the founder's head or small inner circle",
-      "Managers avoid conflict and hard conversations",
-    ],
+    category: "New-manager habits",
+    painPoints: ["You promoted someone six months ago, and the team still waits on them for every decision."],
   },
   {
-    category: "Role Clarity & Accountability",
-    icon: "⚡",
-    painPoints: [
-      "Nobody knows who owns what; decisions keep coming back to founder",
-      "One team has friction, duplication, and handoff confusion",
-      "Managers either micromanage or avoid accountability",
-    ],
+    category: "Leading leaders",
+    painPoints: ["A strong manager is about to lead other managers."],
   },
   {
-    category: "Hiring & Developing People",
-    icon: "🌱",
+    category: "Succession",
     painPoints: [
-      "Wrong hires, weak onboarding, no real manager bench",
-      "First-time managers are overwhelmed and reactive",
-      "Top operator promoted to supervisor without support",
-      "Good people are leaving because growth, recognition, and retention are weak",
-    ],
-  },
-  {
-    category: "Delegation & Founder Freedom",
-    icon: "🚀",
-    painPoints: [
-      "Founder cannot let go; team cannot decide without them",
-      "Founder is holding too many tasks and decisions",
-    ],
-  },
-  {
-    category: "Burnout & Energy",
-    icon: "🔋",
-    painPoints: [
-      "Founder is always behind, always tired, always on",
-      "Founder is stuck in the weeds and needs rapid clarity",
-    ],
-  },
-  {
-    category: "Scaling Pain",
-    icon: "📈",
-    painPoints: [
-      "What got us here won't get us there; growth is breaking what used to work",
-      "Company needs people, leadership, and communication infrastructure for the next stage",
-      "Company needs ongoing senior people leadership without full-time CPO cost",
+      "A key technical person may leave because they can't see their path.",
+      "You need a successor, and you have a name but not a plan.",
     ],
   },
 ];
@@ -158,6 +117,7 @@ function PainCategoryCard({
 
   return (
     <div
+      data-tile
       className={`group relative bg-[#1a1a1a] p-8 transition-all duration-500
         ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}
         ${hovered ? "-translate-y-1 shadow-xl shadow-black/40" : ""}
@@ -186,7 +146,6 @@ function PainCategoryCard({
 
       {/* Category Header */}
       <div className="flex items-center gap-3 mb-6">
-        <span className="text-2xl">{category.icon}</span>
         <h3
           className={`font-serif text-xl font-bold transition-colors duration-300 ${
             hovered ? "text-white" : "text-[#E8E8E8]"

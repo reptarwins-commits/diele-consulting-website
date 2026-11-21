@@ -1,12 +1,16 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
+// Approved P6 copy — use verbatim.
+const intro =
+  "You're a manager or leader at a hardware or software company, or you lead people who are. One of these is true:";
+
 const signals = [
-  "You're a CEO, CTO, or VP of Engineering at a 20–50+ person tech company",
-  "Your org has grown beyond the people you hired and trusted — and things feel different now",
-  "You built your career on being the smartest person in the room, and now that's not enough",
-  "You've got people problems but you keep trying to solve them with a technical mindset",
-  "You haven't named it yet, but something in the culture isn't working",
+  "Your best engineer is about to become a manager, and you want them ready before day one.",
+  "You promoted someone six months ago, and the team still waits on them for every decision.",
+  "A strong manager is about to lead other managers.",
+  "A key technical person may leave because they can't see their path.",
+  "You need a successor, and you have a name but not a plan.",
 ];
 
 export default function WhoThisIsFor() {
@@ -27,19 +31,11 @@ export default function WhoThisIsFor() {
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
         {/* Left */}
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-6 h-[1px] bg-[#B22222]" />
-            <span className="text-[#B22222] text-xs tracking-[0.3em] uppercase font-semibold">Who This Is For</span>
-          </div>
+          <div className="w-6 h-[1px] bg-[#B22222] mb-6" />
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#E8E8E8] mb-6 leading-tight">
-            You might be in the right place if&hellip;
+            Who this is for.
           </h2>
-          <p className="text-[#C8C8C8] text-base leading-relaxed mb-6">
-            The transition from technical expert to leader isn't just a skills gap — it's an identity shift. Most people try to solve it with the same tools that made them successful. Those tools don't work here.
-          </p>
-          <p className="text-[#C8C8C8] text-base leading-relaxed mb-8">
-            The inflection point isn't about headcount. It's when your org grows beyond the trust networks into stranger territory — and the culture you had organically starts to fray.
-          </p>
+          <p className="text-[#C8C8C8] text-lg leading-relaxed mb-8">{intro}</p>
           <a href="#services" className="inline-flex items-center gap-2 text-[#E8E8E8] font-semibold text-sm border-b border-[#B22222] pb-1 hover:text-[#B22222] transition-colors duration-200">
             See how I can help <span>→</span>
           </a>
