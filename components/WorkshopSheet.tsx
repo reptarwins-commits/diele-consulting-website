@@ -272,10 +272,6 @@ export default function WorkshopSheet() {
             </li>
             <li className="flex gap-3">
               <span className="text-[#B22222]">→</span>
-              <span>Founder or executive frustration that people are not taking enough ownership</span>
-            </li>
-            <li className="flex gap-3">
-              <span className="text-[#B22222]">→</span>
               <span>Growth that is exposing weaknesses in culture and management capability</span>
             </li>
           </ul>
@@ -307,18 +303,9 @@ export default function WorkshopSheet() {
           </ul>
         </Section>
 
-        {/* Investment */}
+        {/* Group size and contact */}
         <div className={`mt-12 bg-[#0d1929] text-white p-8 transition-all duration-700 ${mounted ? "opacity-100" : "opacity-0"}`} style={{ transitionDelay: "1100ms" }}>
-          <h2 className="font-serif text-2xl mb-4">Investment</h2>
-          <div className="flex flex-col md:flex-row md:items-end gap-4 md:gap-8">
-            <div>
-              <p className="text-4xl font-serif text-[#B22222]">$1,250</p>
-              <p className="text-[#C8C8C8]">per person</p>
-            </div>
-            <div className="md:border-l md:border-white/20 md:pl-8">
-              <p className="text-lg text-[#C8C8C8]">Groups of 5-10 participants</p>
-            </div>
-          </div>
+          <p className="text-lg text-[#C8C8C8]">Groups of 5-10 participants</p>
           <div className="mt-6 pt-6 border-t border-white/20">
             <p className="text-[#C8C8C8]">
               <strong>Email for more information</strong> or to discuss scheduling for your team.

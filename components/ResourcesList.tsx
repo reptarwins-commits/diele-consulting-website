@@ -14,7 +14,6 @@ const resources = [
       "Purpose-driven engagement model",
       "90-day action plan included",
     ],
-    price: "$1,250 per person",
     groupSize: "Groups of 5-10",
     cta: "Download Free Overview",
     href: "/resources/people-excellence-workshop",
@@ -91,14 +90,18 @@ export default function ResourcesList() {
                 ))}
               </ul>
 
-              {/* Pricing */}
+              {/* Pricing (free items only; no prices on the site) */}
               <div className="border-t border-white/10 pt-6 mb-8">
-                <p className="text-sm text-[#888888] uppercase tracking-wider mb-2">
-                  Investment
-                </p>
-                <p className="text-2xl font-serif text-[#E8E8E8]">
-                  {resource.price}
-                </p>
+                {resource.price && (
+                  <>
+                    <p className="text-sm text-[#888888] uppercase tracking-wider mb-2">
+                      Investment
+                    </p>
+                    <p className="text-2xl font-serif text-[#E8E8E8]">
+                      {resource.price}
+                    </p>
+                  </>
+                )}
                 <p className="text-[#888888] text-sm">{resource.groupSize}</p>
               </div>
 
