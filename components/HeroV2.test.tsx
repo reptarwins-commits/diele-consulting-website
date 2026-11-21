@@ -47,9 +47,14 @@ describe("HeroV2", () => {
     expect(screen.queryByText(/See How It Works|Schedule a Conversation/)).toBeNull();
   });
 
-  it("keeps the body paragraph and credentials strip unchanged", () => {
+  it("uses the approved 35+ years hero body and keeps the credentials strip", () => {
     render(<HeroV2 />);
-    expect(screen.getByText(/You got to where you are because of what you know/)).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "I have been on both sides of it. Not because I studied this, but because I ran engineering organizations for 35+ years and had other leaders send me their people.",
+      ),
+    ).toBeInTheDocument();
+    expect(screen.queryByText(/You got to where you are/)).toBeNull();
     expect(screen.getByText("CECM")).toBeInTheDocument();
     expect(screen.getByText("35+ Years")).toBeInTheDocument();
   });
@@ -57,7 +62,7 @@ describe("HeroV2", () => {
   it("gates the eyebrow, paragraph, CTAs, and credentials (hidden initially)", () => {
     render(<HeroV2 />);
     const eyebrow = screen.getByText(/Leader Development for managers/).closest("div");
-    const paragraph = screen.getByText(/You got to where you are/);
+    const paragraph = screen.getByText(/I have been on both sides of it/);
     const ctaWrapper = screen.getByText("See the results →").closest("div.flex");
     const credentialsWrapper = screen.getByText("CECM").closest("div.border-t");
     for (const el of [eyebrow, paragraph, ctaWrapper, credentialsWrapper]) {

@@ -224,7 +224,7 @@ export default function HeroV2() {
           <p
             className={`text-[#C8C8C8] text-base leading-relaxed mb-10 transition-all duration-700 ${contentReady ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
           >
-            You got to where you are because of what you know. Getting to what's next requires learning how to lead. I've been where you are — not as a coach who studied it, but as someone who lived it.
+            I have been on both sides of it. Not because I studied this, but because I ran engineering organizations for 35+ years and had other leaders send me their people.
           </p>
 
           {/* Stage 4, part 2: CTAs */}
