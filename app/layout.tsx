@@ -21,13 +21,13 @@ const caveat = Caveat({
 export const metadata: Metadata = {
   title: "Leader Development for Hardware and Software Managers | Diele Consulting LLC",
   description:
-    "I help technical founders and leaders close the gap between technical excellence and people leadership. 35 years of experience. Colorado-based.",
+    "I help technical founders and leaders close the gap between technical excellence and people leadership. 35+ years of experience. Colorado-based.",
   openGraph: {
     title: "Leader Development for Hardware and Software Managers | Diele Consulting LLC",
     description:
       "The best technical experts don't always make the best leaders. Until someone shows them how.",
     url: "https://dieleconsulting.com",
-    siteName: "Diele Consulting",
+    siteName: "Diele Consulting LLC",
   },
 };
 

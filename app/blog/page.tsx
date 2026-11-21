@@ -10,7 +10,7 @@ import { BLOG_ENABLED } from "@/lib/flags";
 export const revalidate = 300;
 
 export const metadata = {
-  title: "Leadership Blog for Technical Leaders | Diele Consulting",
+  title: "Leadership Blog for Technical Leaders | Diele Consulting LLC",
   description:
     "Practical writing on leadership transitions, engineering culture, and what it really takes to lead technical teams — from Joe Diele, who ran engineering organizations for 35+ years.",
   alternates: {

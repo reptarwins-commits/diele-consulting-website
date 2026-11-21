@@ -103,7 +103,7 @@ export default function BlogIndex({ posts }: { posts: PostMeta[] }) {
           </div>
           <h1 className="font-serif text-4xl md:text-5xl font-bold text-[#E8E8E8] mb-4">Essays on leadership.</h1>
           <p className="text-[#C8C8C8] text-lg max-w-xl">
-            Hard-won lessons from 35 years in tech — on the transition from expert to leader, building cultures that last, and the things nobody teaches you when you get promoted.
+            Hard-won lessons from 35+ years in tech — on the transition from expert to leader, building cultures that last, and the things nobody teaches you when you get promoted.
           </p>
         </div>
       </section>

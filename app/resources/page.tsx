@@ -5,7 +5,7 @@ import Nav from "@/components/Nav";
 import ScrollProgress from "@/components/ScrollProgress";
 
 export const metadata = {
-  title: "Resources | Free Downloads | Diele Consulting",
+  title: "Resources | Free Downloads | Diele Consulting LLC",
   description:
     "Free resources for business owners and leadership teams. Download the People Excellence Workshop overview.",
 };

@@ -14,7 +14,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-[#909090] text-sm leading-relaxed">
-              Executive coaching and leadership development for technical founders, executives, and government agencies.
+              Executive coaching and Leader Development for technical founders, executives, and government agencies.
             </p>
           </div>
 

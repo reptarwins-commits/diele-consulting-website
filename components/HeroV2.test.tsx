@@ -51,7 +51,7 @@ describe("HeroV2", () => {
     render(<HeroV2 />);
     expect(screen.getByText(/You got to where you are because of what you know/)).toBeInTheDocument();
     expect(screen.getByText("CECM")).toBeInTheDocument();
-    expect(screen.getByText("35 Years")).toBeInTheDocument();
+    expect(screen.getByText("35+ Years")).toBeInTheDocument();
   });
 
   it("gates the eyebrow, paragraph, CTAs, and credentials (hidden initially)", () => {

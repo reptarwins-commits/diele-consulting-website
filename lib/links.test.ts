@@ -28,3 +28,33 @@ describe("timespan claims", () => {
     expect(offenders).toEqual([]);
   });
 });
+
+describe("P12 consistency", () => {
+  const files = () =>
+    ["app", "components", "lib"].flatMap(sourceFiles).filter((f) => !f.endsWith("lib/results.ts"));
+
+  it("says 35+ years, never a bare '35 years' / '35 Years'", () => {
+    const offenders = files().filter((f) => /\b35 (years|Years)\b/.test(readFileSync(f, "utf8")));
+    expect(offenders).toEqual([]);
+  });
+
+  it("uses 'Leader Development' except in the approved Services offer heading", () => {
+    const offenders = files().filter((f) => {
+      const src = readFileSync(f, "utf8").replace("Leadership Development & Executive Coaching", "");
+      return /[Ll]eadership [Dd]evelopment/.test(src);
+    });
+    expect(offenders).toEqual([]);
+  });
+
+  it("names the business 'Diele Consulting LLC' in page titles (About keeps its approved title)", () => {
+    const offenders = files().filter((f) => {
+      const src = readFileSync(f, "utf8");
+      return /\| Diele Consulting"/.test(src);
+    });
+    expect(offenders).toEqual([]);
+  });
+
+  it("never says M.S. Org. Leadership", () => {
+    expect(files().filter((f) => readFileSync(f, "utf8").includes("M.S. Org. Leadership"))).toEqual([]);
+  });
+});

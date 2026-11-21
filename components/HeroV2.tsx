@@ -247,7 +247,7 @@ export default function HeroV2() {
             style={{ transitionDelay: "1000ms" }}
           >
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-white/50 text-sm">
-              {["CECM", "Lean Six Sigma Black Belt", "Published Author", "35 Years"].map((c, i) => (
+              {["CECM", "Lean Six Sigma Black Belt", "Published Author", "35+ Years"].map((c, i) => (
                 <span key={i} className="flex items-center gap-3">
                   {i > 0 && <span className="text-[#B22222]">·</span>}
                   {c}

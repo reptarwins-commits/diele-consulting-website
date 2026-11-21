@@ -95,7 +95,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               <p className="text-[#E8E8E8] font-semibold mb-1">Joseph Diele</p>
               <p className="text-[#909090] text-sm mb-3">Executive Coach · Founder, Diele Consulting · Author of Sustainable Quality</p>
               <p className="text-[#C8C8C8] text-sm leading-relaxed">
-                35 years in tech — from engineer to director to founder. Joe helps CEOs, CTOs, and VPs close the gap between technical expertise and people leadership.
+                35+ years in tech — from engineer to director to founder. Joe helps CEOs, CTOs, and VPs close the gap between technical expertise and people leadership.
               </p>
             </div>
           </div>
