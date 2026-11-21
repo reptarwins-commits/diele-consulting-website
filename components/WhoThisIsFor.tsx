@@ -36,7 +36,7 @@ export default function WhoThisIsFor() {
             Who this is for.
           </h2>
           <p className="text-[#C8C8C8] text-lg leading-relaxed mb-8">{intro}</p>
-          <a href="#services" className="inline-flex items-center gap-2 text-[#E8E8E8] font-semibold text-sm border-b border-[#B22222] pb-1 hover:text-[#B22222] transition-colors duration-200">
+          <a href="/services" className="inline-flex items-center gap-2 text-[#E8E8E8] font-semibold text-sm border-b border-[#B22222] pb-1 hover:text-[#B22222] transition-colors duration-200">
             See how I can help <span>→</span>
           </a>
         </div>
