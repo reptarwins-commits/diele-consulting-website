@@ -34,6 +34,11 @@ describe("Footer", () => {
     );
   });
 
+  it("has a Results item pointing at /results", () => {
+    render(<Footer />);
+    expect(screen.getByRole("link", { name: "Results" })).toHaveAttribute("href", "/results");
+  });
+
   it("points Services at the /services page, not an in-page anchor", () => {
     render(<Footer />);
     expect(screen.getByRole("link", { name: "Services" })).toHaveAttribute("href", "/services");

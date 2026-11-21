@@ -5,6 +5,7 @@ import { BLOG_ENABLED } from "@/lib/flags";
 const links = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
+  { label: "Results", href: "/results" },
   ...(BLOG_ENABLED ? [{ label: "Blog", href: "/blog" }] : []),
   { label: "Resources", href: "/resources" },
 ];

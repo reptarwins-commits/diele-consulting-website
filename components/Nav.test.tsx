@@ -14,6 +14,11 @@ describe("Nav", () => {
     expect(screen.getByRole("link", { name: "Services" })).toBeInTheDocument();
   });
 
+  it("has a Results item pointing at /results", () => {
+    render(<Nav />);
+    expect(screen.getByRole("link", { name: "Results" })).toHaveAttribute("href", "/results");
+  });
+
   it("points Services at the /services page, not an in-page anchor", () => {
     render(<Nav />);
     expect(screen.getByRole("link", { name: "Services" })).toHaveAttribute("href", "/services");

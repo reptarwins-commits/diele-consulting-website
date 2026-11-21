@@ -24,6 +24,7 @@ export default function Footer() {
               {[
                 { label: "About", href: "/about" },
                 { label: "Services", href: "/services" },
+                { label: "Results", href: "/results" },
                 ...(BLOG_ENABLED ? [{ label: "Blog", href: "/blog" }] : []),
                 { label: "Book a Call", href: "https://calendly.com/josephdiele", external: true },
               ].map((item) => (

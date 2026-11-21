@@ -7,6 +7,7 @@ import Services from "@/components/Services";
 import AboutBio from "@/components/AboutBio";
 import Book from "@/components/Book";
 import Testimonials from "@/components/Testimonials";
+import ResultsTeaser from "@/components/ResultsTeaser";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
@@ -24,6 +25,7 @@ export default function Home() {
       <AboutBio />
       <Book />
       <Testimonials />
+      <ResultsTeaser />
       <CTA />
       <Footer />
     </main>

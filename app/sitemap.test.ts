@@ -7,6 +7,11 @@ describe("sitemap.xml", () => {
     expect(urls).toContain("https://dieleconsulting.com/services");
   });
 
+  it("includes the /results page", () => {
+    const urls = sitemap().map((e) => e.url);
+    expect(urls).toContain("https://dieleconsulting.com/results");
+  });
+
   it("includes the existing standard pages", () => {
     const urls = sitemap().map((e) => e.url);
     expect(urls).toEqual(
