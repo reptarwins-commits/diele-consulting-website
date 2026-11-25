@@ -40,6 +40,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# linkedin backfill working files (HAR holds session tokens; out/ holds personal post data)
+/scripts/linkedin/out/
+*.har
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
